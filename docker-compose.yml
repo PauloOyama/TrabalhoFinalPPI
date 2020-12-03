@@ -1,0 +1,36 @@
+# Arquivo utilizado para facilitar o setup do ambiente de desenvolvimento
+version: '3.1'
+
+services:
+  db:
+    image: mysql
+    container_name: ppi_mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: docker is cool
+      MYSQL_DATABASE: clinica
+    ports:
+      - 3306:3306
+
+  web-frontend:
+    image: phpmyadmin
+    container_name: ppi_phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+
+  php-server:
+    image: php
+    container_name: ppi_phpserver
+    restart: always
+    network_mode: "host"
+    volumes:
+      - type: bind
+        source: ./
+        target: /app
+    working_dir: /app
+    entrypoint: ./entrypoint.sh
+
+volumes:
+  ppi_mysql_volume:
