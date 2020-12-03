@@ -24,7 +24,8 @@ services:
     image: php
     container_name: ppi_phpserver
     restart: always
-    network_mode: "host"
+    ports:
+      - 5000:5000
     volumes:
       - type: bind
         source: ./
