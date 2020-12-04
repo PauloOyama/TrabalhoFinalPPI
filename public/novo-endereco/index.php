@@ -1,38 +1,17 @@
 <?php
+include_once "../../db.php";
+
 function return_err($msg, $code = 400) {
     http_response_code($code);
     echo json_encode(["ERR_MSG" => $msg], JSON_UNESCAPED_UNICODE);
     exit();
 }
 
-function post_return() {
-    $db_host = "db";
-    $db_name = "clinica";
-    $db_username = "root";
-    $db_password = "docker is cool";
-
-    $dsn = "mysql:host=$db_host; dbname=$db_name; charset=utf8mb4";
-    $options = [
-        PDO::ATTR_EMULATE_PREPARES => false,
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    ];
-
-    try {
-        $pdo = new PDO($dsn, $db_username, $db_password, $options);
-    }
-    catch (Exception $e) {
-        $msg = $e->getMessage();
-        return_err("Não foi possível conectar ao banco de dados: $msg", 500);
-    }
-
-    // Início do processo de validação/armazenamento de dados
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $expected_keys = ["cep", "logradouro", "bairro", "cidade", "estado"];
-    foreach ($expected_keys as $key) {
-        if (!array_key_exists($key, $_POST)) {
-            return_err("Requisição inválida -- campos faltando.");
-        }
-    }
+    foreach ($expected_keys as $key)
+      if (!array_key_exists($key, $_POST))
+          return_err("Requisição inválida -- campos faltando");
 
     $sql = <<<SQL
         INSERT INTO base_enderecos_ajax (cep, logradouro, bairro, cidade, estado)
@@ -46,11 +25,6 @@ function post_return() {
     catch (Exception $e) {
         return_err("Houve um erro na adição do endereço", 500);
     }
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    post_return();
-    exit();
 }
 ?>
 <!doctype html>
@@ -67,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </head>
   <body>
     <div class="container">
-      <form class="row g-2" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+      <form class="row g-2">
         <div class="col-sm-3">
           <div class="form-floating">
             <input type="text" class="form-control" id="cep" placeholder="00000000000" name="cep">
@@ -103,11 +77,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
         <div class="col-12">
-          <button type="submit" class="btn btn-primary">
+          <button type="button" class="btn btn-primary">
             Enviar
           </button>
         </div>
       </form>
     </div>
+    <script>
+      console.log('aye')
+      let form = document.querySelector("form");
+      let btn = document.querySelector("button");
+      btn.addEventListener("click", e => {
+        req = new XMLHttpRequest();
+        req.onreadystatechange = () => {
+        if (req.status === 200)
+          console.log('nicer!')
+        }
+        req.open('POST', 'index.php')
+        req.send(new FormData(form))
+      })
+    </script>
   </body>
 </html>
