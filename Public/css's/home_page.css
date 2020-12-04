@@ -1,25 +1,58 @@
 header {
-    background-color: black;
-    color: rgb(214, 218, 221);
-    height: 70px;
-    position: relative;
+  background-color: black;
+  color: rgb(214, 218, 221);
+  height: 70px;
+  position: relative;
 }
 
-nav{
-    text-align: center;
-    background-color: rgb(97, 97, 97);
-    color: white;
+nav {
+  text-align: center;
+  background-color: rgb(97, 97, 97);
+  color: white;
 }
 
 nav a {
-    margin: 0 20px;
+  margin: 0 20px;
 }
 
 main {
-    background-color: rgb(172, 172, 172);
-    border-radius: 1px solid gray;
+  background-color: rgb(172, 172, 172);
+  border-radius: 1px solid gray;
+}
+/* js */
+section p {
+  color: rgb(10, 10, 10);
+}
+nav button {
+  color: white;
+  border: none;
+  outline: none;
+  padding: 0 10px;
+  background-color: inherit;
+  height: 30px;
 }
 
-section  p {
-     color: aquamarine;
+nav button:hover {
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+button.buttonActive {
+  font-weight: bold;
+  color: black;
+}
+
+.tabs section {
+  display: none;
+}
+
+section.tabActive {
+  display: block;
+}
+
+ul > li {
+  padding: 5px 20px;
+  margin: 0px 3px;
+  display: inline;
 }
