@@ -1,0 +1,18 @@
+#centralizaX {
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+}   
+
+#centralizaY {
+    left: 50%;
+    position: absolute;
+    transform: translateY(-50%);
+}
+
+#centralizaXY{
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+}
