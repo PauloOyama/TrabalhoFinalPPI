@@ -1,0 +1,25 @@
+header {
+    background-color: black;
+    color: rgb(214, 218, 221);
+    height: 70px;
+    position: relative;
+}
+
+nav{
+    text-align: center;
+    background-color: rgb(97, 97, 97);
+    color: white;
+}
+
+nav a {
+    margin: 0 20px;
+}
+
+main {
+    background-color: rgb(172, 172, 172);
+    border-radius: 1px solid gray;
+}
+
+section  p {
+     color: aquamarine;
+}
