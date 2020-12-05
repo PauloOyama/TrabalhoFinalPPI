@@ -1,3 +1,7 @@
+html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 header {
     background-color: black;
     color: rgb(214, 218, 221);
@@ -5,21 +9,46 @@ header {
     position: relative;
 }
 
-nav{
+nav {
+    height: 30px;
+    top: 0;
+    position: sticky;
     text-align: center;
-    background-color: rgb(97, 97, 97);
+    background-color: rgb(139, 139, 139);
     color: white;
 }
 
+header>h2 {
+    margin-left: 80px;
+    display: inline;
+}
+
 nav a {
+    color: white;
+    text-decoration: none;
     margin: 0 20px;
 }
 
-main {
-    background-color: rgb(172, 172, 172);
-    border-radius: 1px solid gray;
+nav a:hover {
+    text-decoration: none;
+    color: rgb(68, 68, 68);
+    margin: 0 20px;
 }
 
-section  p {
-     color: aquamarine;
+#homeMain {
+    border: 1px solid gray;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+main {
+    background-color: white;
+    box-shadow: 2px 5px 5px 5px #cbcbcb;
+}
+
+section p {
+    margin: 5px 15px;
+    color: rgb(94, 93, 93);
+    text-align: start;
+    line-height: 1.5em;
 }
