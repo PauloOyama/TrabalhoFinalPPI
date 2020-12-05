@@ -24,6 +24,13 @@ header>h2 {
     display: inline;
 }
 
+aside {
+    margin-top: 60px;
+    position: fixed;
+    top: 50px;
+    right: 20px;
+}
+
 nav a {
     color: white;
     text-decoration: none;
