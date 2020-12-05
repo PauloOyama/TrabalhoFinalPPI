@@ -61,7 +61,49 @@
     </div>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-popRpmFF9JQgExhfw5tZT4I9/CI5e2QcuUZPOVXb1m7qUmeR2b50u+YFEYe1wgzy" crossorigin="anonymous"></script>
+    <<<<<<< HEAD <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-popRpmFF9JQgExhfw5tZT4I9/CI5e2QcuUZPOVXb1m7qUmeR2b50u+YFEYe1wgzy" crossorigin="anonymous">
+        </script>
+        =======
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-popRpmFF9JQgExhfw5tZT4I9/CI5e2QcuUZPOVXb1m7qUmeR2b50u+YFEYe1wgzy" crossorigin="anonymous"></script>
+        <script>
+            window.onload = () => {
+
+
+                buttons = document.querySelectorAll("nav button"); //seleciona itens da tag button em um iten nav e adiciona na variavel buttons
+
+                for (let button of buttons) //percorre cada item chamado de botao na variavel botoes
+                    button.addEventListener("click", changeTab); // cada iten botao recebe um evento click que quando realizado chama a função changeTab
+
+                openTab(0); //chama a função openTab iniciando com a tab 1 aberta
+            }
+
+            function changeTab(e) {
+
+                const triggeredButton = e.target; //seleciona o botão em que o evento aconteceu
+                const buttonLi = triggeredButton.parentNode; //seleciona o no pai do botão indicado
+                const nodes = Array.from(buttonLi.parentNode.children); //seleciona todos os botoes da nav
+                const index = nodes.indexOf(buttonLi); // encontra o index do botao selecionado
+
+                openTab(index); //chama a função openTaba enviando o index do botão selecionado
+            }
+
+            function openTab(index) {
+
+                const tabActive = document.querySelector(".tabActive"); //seleciona o item que tem a classe tabactive
+                if (tabActive !== null) { //verifica se foi encontrado algum item com a classe tabActive
+                    tabActive.className = ""; //se foi encontrado remove a classe
+                }
+
+                const buttonActive = document.querySelector(".buttonActive"); //realiza o mesmo processo de cima porem com a classe buttonActive
+                if (buttonActive !== null) {
+                    buttonActive.className = "";
+                }
+
+                document.querySelectorAll(".tabs section")[index].className = "tabActive"; //utiliza o index para mudar a classe do item para tabActive exibindo-o
+                document.querySelectorAll("nav button")[index].className = "buttonActive"; //utiliza o index para mudar a classe do item para buttonActive alterando seu estilo
+            }
+        </script>
+        >>>>>>> 5dcf536aeb56907cb449880a121d181e0d0b1451
 </body>
 
 </html>

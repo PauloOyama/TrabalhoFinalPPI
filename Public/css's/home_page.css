@@ -16,6 +16,7 @@ nav {
     text-align: center;
     background-color: rgb(139, 139, 139);
     color: white;
+    /* background-color: rgb(97, 97, 97); */
 }
 
 header>h2 {
@@ -42,7 +43,6 @@ nav a:hover {
 }
 
 main {
-    background-color: white;
     box-shadow: 2px 5px 5px 5px #cbcbcb;
 }
 
@@ -51,4 +51,54 @@ section p {
     color: rgb(94, 93, 93);
     text-align: start;
     line-height: 1.5em;
+}
+
+
+/* js */
+
+section p {
+    color: rgb(10, 10, 10);
+}
+
+nav button {
+    color: white;
+    border: none;
+    outline: none;
+    padding: 0 10px;
+    background-color: inherit;
+    height: 30px;
+}
+
+nav button:hover {
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+button.buttonActive {
+    font-weight: bold;
+    color: black;
+}
+
+.tabs section {
+    display: none;
+}
+
+section.tabActive {
+    display: block;
+}
+
+ul>li {
+    padding: 5px 20px;
+    margin: 0px 3px;
+    display: inline;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+    margin: 5px;
+    filter: invert(100%);
+    /*Torna o svg branco*/
 }
