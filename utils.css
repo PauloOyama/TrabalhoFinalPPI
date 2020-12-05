@@ -4,6 +4,11 @@
     text-align: center;
 }
 
+body {
+    background-image: url('/Public/imgs/background_image.jpg');
+    background-size: cover;
+}
+
 .centralizaY {
     top: 50%;
     position: absolute;
@@ -15,4 +20,30 @@
     top: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
+}
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    background-color: black;
+    color: rgb(214, 218, 221);
+    height: 70px;
+    position: relative;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+    margin: 5px;
+    filter: invert(100%);
+    /*Torna o svg branco*/
+}
+
+#homeMain {
+    border: 1px solid gray;
+    border-radius: 4px;
+    margin-top: 10px;
 }
