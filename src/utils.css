@@ -47,6 +47,14 @@ header {
   border-radius: 4px;
   margin-top: 10px;
 }
+
 .topics {
   margin-top: 100px;
+}
+
+.svgs {
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+  margin: 5px;
 }
