@@ -5,7 +5,7 @@
 }
 
 body {
-  background-image: url("/Public/imgs/background_image.jpg");
+  background-image: url("/public/imgs/background_image.jpg");
   background-size: cover;
 }
 
