@@ -1,0 +1,8 @@
+main {
+    padding: 10px;
+    background-color: white;
+}
+
+main>h2 {
+    margin-bottom: 10px;
+}
