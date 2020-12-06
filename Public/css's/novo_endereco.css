@@ -1,7 +1,18 @@
 main {
+    background-color: white;
     padding: 10px;
 }
 
 main>h2 {
     margin-bottom: 10px;
+}
+
+div span {
+    color: red;
+}
+
+input:focus {
+    border: 0.6px solid rgb(77, 10, 202);
+    box-shadow: 0px 0px 5px rgb(111, 199, 240);
+    outline: none;
 }
