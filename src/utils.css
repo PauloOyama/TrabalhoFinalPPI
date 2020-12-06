@@ -51,10 +51,26 @@ header {
 .topics {
   margin-top: 100px;
 }
+h2 {
+  color: #f34213;
+}
 
 .svgs {
   width: 100px;
   height: 100px;
   padding: 10px;
   margin: 5px;
+  filter: invert(30%) sepia(96%) saturate(2775%) hue-rotate(355deg)
+    brightness(98%) contrast(95%);
+}
+.svgs:hover {
+  filter: invert(77%) sepia(49%) saturate(6095%) hue-rotate(327deg)
+    brightness(100%) contrast(94%);
+}
+.nav-link:hover {
+  color: #f67451 !important;
+}
+
+.dropdown-item:hover {
+  color: #f67451 !important;
 }
