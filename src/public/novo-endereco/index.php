@@ -78,10 +78,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             Menu
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="./login/">Login</a>
-                            <a class="dropdown-item " href="./novo-endereco/">Cadastro de Endereço</a>
-                            <a class="dropdown-item " href="./galeria/">Galeria</a>
-                            <a class="dropdown-item " href="./agendar-consulta/">Agendar Consulta</a>
+                            <a class="dropdown-item" href="/public/login/">Login</a>
+                            <a class="dropdown-item " href="/public/novo-endereco/">Cadastro de Endereço</a>
+                            <a class="dropdown-item " href="/public/galeria/">Galeria</a>
+                            <a class="dropdown-item " href="/public/agendar-consulta/">Agendar Consulta</a>
 
 
                         </div>
