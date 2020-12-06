@@ -8,10 +8,22 @@ function return_err($msg, $code = 400) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    header("Content-Type: application/json; charset=UTF-8");
     $expected_keys = ["cep", "logradouro", "bairro", "cidade", "estado"];
     foreach ($expected_keys as $key)
       if (!array_key_exists($key, $_POST))
           return_err("Requisição inválida -- campos faltando");
+
+    // Verifica se o CEP já existe na base de dados
+    $sql = <<<SQL
+        SELECT CEP
+        FROM base_enderecos_ajax
+        WHERE CEP = ?
+        SQL;
+    $query = $pdo->prepare($sql);
+    $query->execute([$_POST["cep"]]);
+    if ($query->fetch())
+        return_err("CEP já existente");
 
     $sql = <<<SQL
         INSERT INTO base_enderecos_ajax (cep, logradouro, bairro, cidade, estado)
@@ -21,6 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         $query = $pdo->prepare($sql);
         $query->execute([$_POST["cep"], $_POST["logradouro"], $_POST["bairro"], $_POST["cidade"], $_POST["estado"]]);
+        echo json_encode(["STATUS" => true]);
+        exit();
     }
     catch (Exception $e) {
         return_err("Houve um erro na adição do endereço", 500);
