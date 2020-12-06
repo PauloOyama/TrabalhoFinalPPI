@@ -99,52 +99,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-popRpmFF9JQgExhfw5tZT4I9/CI5e2QcuUZPOVXb1m7qUmeR2b50u+YFEYe1wgzy" crossorigin="anonymous"></script>
 
-    <script>
-        window.onload = function() {
-            document.forms.Cadastro.onsubmit = validaForm;
-        }
-
-        function validaForm(e) {
-
-            let form = e.target;
-            let formValido = true;
-
-            const spanCEP = form.CEP.nextElementSibling;
-            const spanLOGRADOURO = form.LOGRADOURO.nextElementSibling;
-            const spanBAIRRO = form.BAIRRO.nextElementSibling;
-            const spanCIDADE = form.CIDADE.nextElementSibling;
-
-
-            spanCEP.textContent = "";
-            spanLOGRADOURO.textContent = "";
-            spanBAIRRO.textContent = "";
-            spanCIDADE.textContent = "";
-
-            if (form.CEP.value === "") {
-                spanCEP.textContent = 'O cep deve ser preenchido';
-                formValido = false;
-            }
-
-            if (form.LOGRADOURO.value === "") {
-                spanLOGRADOURO.textContent = 'O logradouro deve ser preenchido';
-                formValido = false;
-            }
-
-            if (form.BAIRRO.value === "") {
-                spanBAIRRO.textContent = 'O bairro deve ser preenchido';
-                formValido = false;
-            }
-
-            if (form.CIDADE.value === "") {
-                spanCIDADE.textContent = 'A cidade deve ser preenchida';
-                formValido = false;
-            }
-
-            return formValido;
-
-        }
-    </script>
-
 </body>
 
 </html>
