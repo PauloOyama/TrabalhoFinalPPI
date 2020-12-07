@@ -58,29 +58,32 @@
 
       <div class="col-md-4">
         <label for="especialidade" class="form-label">Especialidade médica</label>
-        <select name="especialidade" id="especialidade" class="form-select">
+        <select name="especialidade" id="ESPECIALIDADE" class="form-select">
+          <option value=""></option>
           <option value="">Cardiologista</option>
           <option value="">Oftamologista</option>
           <option value="">Neurologista</option>
-        </select>
+        </select><span></span>
       </div>
 
       <div class="col-md-8">
         <label for="medicoEspecialista" class="form-label">Nome do médico especialista</label>
-        <select name="medicoEspecialista" id="medicoEspecialista" class="form-select">
+        <select name="medicoEspecialista" id="MEDICOESPECIALISTA" class="form-select">
+          <option value=""></option>
           <option value="">Doutor sem doutorado 1</option>
           <option value="">Doutor sem doutorado 2</option>
           <option value="">Doutor sem doutorado 3</option>
-        </select>
+        </select><span></span>
       </div>
 
       <div class="col-md-4">
         <label for="data" class="form-label">Data</label>
-        <input type="date" class="form-control" id="data" name="data">
+        <input type="date" class="form-control" id="DATA" name="data"><span></span>
       </div>
       <div class="col-md-2">
         <label for="horarioDisponivel" class="form-label">Horário para à consulta</label>
-        <select name="horarioDisponivel" id="horarioDisponivel" class="form-select">
+        <select name="horarioDisponivel" id="HORARIODISPONIVEL" class="form-select">
+          <option value=""></option>
           <option value="8">8:00</option>
           <option value="9">9:00</option>
           <option value="10">10:00</option>
@@ -91,23 +94,23 @@
           <option value="15">15:00</option>
           <option value="16">16:00</option>
           <option value="17">17:00</option>
-        </select>
+        </select><span></span>
       </div>
 
       <h2 class="centralizaX">Dados do Paciente</h2>
       <div class="col-md-6 ">
         <label for="nome" class="form-label">Nome</label>
-        <input type="nome" class="form-control" id="nome" name="nome" autocomplete="off">
+        <input type="nome" class="form-control" id="NOME" name="nome" autocomplete="off"><span></span>
       </div>
       <div class="col-md-6 ">
         <label for="Email" class="form-label">Email</label>
-        <input type="email" class="form-control" id="Email" placeholder="Ex: arel@vidal.com" name="email"
-          autocomplete="off">
+        <input type="email" class="form-control" id="EMAIL" placeholder="Ex: arel@vidal.com" name="email"
+          autocomplete="off"><span></span>
       </div>
       <div class="col-md-4 ">
         <label for="telefone" class="form-label">Telefone</label>
-        <input type="number" class="form-control" id="telefone" name="telefone" placeholder="Ex: (xx) xxxxx-xxxx"
-          maxlength="11" autocomplete="off">
+        <input type="number" class="form-control" id="TELEFONE" name="telefone" placeholder="Ex: (xx) xxxxx-xxxx"
+          maxlength="11" autocomplete="off"><span></span>
       </div>
       <div class="col-md-12">
         <button type="submit" class="btn btn-primary">
@@ -134,36 +137,55 @@
     let form = e.target;
     let formValido = true;
 
-    const spanCEP = form.CEP.nextElementSibling;
-    const spanLOGRADOURO = form.LOGRADOURO.nextElementSibling;
-    const spanBAIRRO = form.BAIRRO.nextElementSibling;
-    const spanCIDADE = form.CIDADE.nextElementSibling;
+    const spanESPECIALIDADE = form.ESPECIALIDADE.nextElementSibling;
+    const spanMEDICOESPECIALISTA = form.MEDICOESPECIALISTA.nextElementSibling;
+    const spanDATA = form.DATA.nextElementSibling;
+    const spanHORARIODISPONIVEL = form.HORARIODISPONIVEL.nextElementSibling;
+    const spanNOME = form.NOME.nextElementSibling;
+    const spanEMAIL = form.EMAIL.nextElementSibling;
+    const spanTELEFONE = form.TELEFONE.nextElementSibling;
 
 
-    spanCEP.textContent = "";
-    spanLOGRADOURO.textContent = "";
-    spanBAIRRO.textContent = "";
-    spanCIDADE.textContent = "";
+    spanESPECIALIDADE.textContent = "";
+    spanMEDICOESPECIALISTA.textContent = "".nextElementSibling;
+    spanDATA.textContent = "";
+    spanHORARIODISPONIVEL.textContent = "";
+    spanNOME.textContent = "";
+    spanEMAIL.textContent = "";
+    spanTELEFONE.textContent = "";
 
-    if (form.CEP.value === "") {
-      spanCEP.textContent = 'O cep deve ser preenchido';
+
+    if (form.ESPECIALIDADE.value === "") {
+      spanESPECIALIDADE.textContent = 'A Especialidade deve ser selecionada';
       formValido = false;
     }
 
-    if (form.LOGRADOURO.value === "") {
-      spanLOGRADOURO.textContent = 'O logradouro deve ser preenchido';
+    if (form.MEDICOESPECIALISTA.value === "") {
+      spanMEDICOESPECIALISTA.textContent = 'O Medico Especialista deve ser selecionado';
+      formValido = false;
+    }
+    if (form.DATA.value === "") {
+      spanDATA.textContent = 'A Data deve ser selecionada';
+      formValido = false;
+    }
+    if (form.HORARIODISPONIVEL.value === "") {
+      spanHORARIODISPONIVEL.textContent = 'O Horário deve ser selecionado';
       formValido = false;
     }
 
-    if (form.BAIRRO.value === "") {
-      spanBAIRRO.textContent = 'O bairro deve ser preenchido';
+    if (form.NOME.value === "") {
+      spanNOME.textContent = 'O Nome deve ser preenchido';
+      formValido = false;
+    }
+    if (form.EMAIL.value === "") {
+      spanEMAIL.textContent = 'O Email deve ser preenchido';
+      formValido = false;
+    }
+    if (form.TELEFONE.value === "") {
+      spanTELEFONE.textContent = 'O Telefone deve ser preenchido';
       formValido = false;
     }
 
-    if (form.CIDADE.value === "") {
-      spanCIDADE.textContent = 'A cidade deve ser preenchida';
-      formValido = false;
-    }
 
     return formValido;
 
