@@ -105,10 +105,54 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
 
             </form>
+            <div class="modal fade" id="modal-login">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body" id="modal-text">
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-primary">Ok</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-popRpmFF9JQgExhfw5tZT4I9/CI5e2QcuUZPOVXb1m7qUmeR2b50u+YFEYe1wgzy" crossorigin="anonymous"></script>
+    <script>
+        let modalLogin = new bootstrap.Modal(document.getElementById('modal-login'));
+
+        function sendPageForm(event) {
+            event.preventDefault();
+            formInfo = new FormData(document.querySelector("form"));
+            
+            httpReq = new XMLHttpRequest();
+            
+            httpReq.onreadystatechange = function() {
+                if (httpReq.readyState === XMLHttpRequest.DONE) {
+                    if (httpReq.status === 200) {
+                        document.getElementById("modal-text").innerText = "Login feito com sucesso.";
+                        window.open(`${window.location.protocol}//${window.location.host}/private/`);
+                        modalLogin.show();
+                    }
+                    else if (httpReq.status === 401) {
+                        document.getElementById("modal-text").innerText = "Credenciais inválidas";
+                        modalLogin.show();
+                    }
+                    else {
+                        document.getElementById("modal-text").innerText = "Um erro inesperado ocorreu";
+                        modalLogin.show();
+                    }
+                }
+            }
+
+            httpReq.open("POST", "./");
+            httpReq.send(formInfo);
+        }
+
+        document.querySelector("form").addEventListener("submit", sendPageForm);
+    </script>
 </body>
 
 </html>
