@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
         <div class="container">
             <img src="/public/svg/cardiograma.svg" alt="Logo" class="logo" />
-            <h2 class="navbar-brand">Clinica São Miguel</h2>
+            <h2 class="navbar-brand">Clínica São Miguel</h2>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -103,17 +103,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="col-md-12 ">
                     <label for="Email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="Email" placeholder="Ex: arel@vidal.com" name="email" autocomplete="off">
+                    <input type="email" class="form-control" id="Email" placeholder="Ex: arel@vidal.com" name="email" autocomplete="off" required>
                 </div>
 
                 <div class="col-md-12 ">
                     <label for="senha" class="form-label">Senha</label>
-                    <input type="password" class="form-control" id="senha" name="senha" autocomplete="off">
+                    <input type="password" class="form-control" id="senha" name="senha" autocomplete="off" required>
                 </div>
 
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary">
-                        Cadastrar
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">
+                        Entrar
                     </button>
                 </div>
 
