@@ -63,43 +63,43 @@
 
                 <div class="col-md-12">
                     <label for="nome" class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="nome" name="NOME" autocomplete="off">
+                    <input type="text" class="form-control" id="nome" name="NOME" autocomplete="off" required>
                     <span></span>
                 </div>
                 <div class="col-md-8 ">
                     <label for="Email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="Email" placeholder="Ex: ariel@vidal.com" name="EMAIL" autocomplete="off">
+                    <input type="email" class="form-control" id="Email" placeholder="Ex: ariel@vidal.com" required name="EMAIL" autocomplete="off">
                     <span></span>
                 </div>
                 <div class="col-md-4">
                     <label for="Telefone" class="form-label">Telefone</label>
-                    <input type="tel" class="form-control" id="Telefone" name="TELEFONE" autocomplete="off" pattern="([0-9]{2})[0-9]{5}-[0-9]{4}">
+                    <input type="tel" class="form-control" id="Telefone" name="TELEFONE" required autocomplete="off" pattern="([0-9]{2})[0-9]{5}-[0-9]{4}">
                     <span></span>
                 </div>
                 <div class="col-md-4">
                     <label for="Cep" class="form-label">CEP</label>
-                    <input type="tel" class="form-control" id="Cep" name="CEP" autocomplete="off" min="1" max="8">
+                    <input type="tel" class="form-control" id="Cep" name="CEP" required autocomplete="off" min="1" max="8">
                     <span></span>
                 </div>
 
                 <div class="col-md-8">
                     <label for="Logradouro" class="form-label">Logradouro</label>
-                    <input type="text" class="form-control" id="Logradouro" name="LOGRADOURO" autocomplete="off">
+                    <input type="text" class="form-control" id="Logradouro" required name="LOGRADOURO" autocomplete="off">
                     <span></span>
                 </div>
                 <div class="col-md-12">
                     <label for="Cidade" class="form-label">Cidade</label>
-                    <input type="text" class="form-control" id="Cidade" name="CIDADE" autocomplete="off">
+                    <input type="text" class="form-control" id="Cidade" required name="CIDADE" autocomplete="off">
                     <span></span>
                 </div>
                 <div class="col-md-12">
                     <label for="Bairro" class="form-label">Bairro</label>
-                    <input type="text" class="form-control" id="Bairro" name="BAIRRO" autocomplete="off">
+                    <input type="text" class="form-control" id="Bairro" required name="BAIRRO" autocomplete="off">
                     <span></span>
                 </div>
                 <div class="col-md-4">
                     <label for="ESTADO" class="form-label">Estado</label>
-                    <select name="ESTADO" id="ESTADO" class="form-select">
+                    <select name="ESTADO" id="ESTADO" class="form-select" required>
                         <option disabled selected value> -- Selecione uma opção -- </option>
                         <option value="MG">MG</option>
                         <option value="SP">SP</option>
@@ -110,20 +110,37 @@
 
                 <div class="col-md-4">
                     <label for="Data" class="form-label">Data de Inicío</label>
-                    <input type="date" class="form-control" id="Data" name="DATA" autocomplete="off">
+                    <input type="date" class="form-control" id="Data" required name="DATA" autocomplete="off">
                     <span></span>
                 </div>
                 <div class="col-md-4">
                     <label for="Salario" class="form-label">Salário</label>
-                    <input type="text" class="form-control" id="Salario" name="SALARIO" autocomplete="off">
+                    <input type="text" class="form-control" id="Salario" required name="SALARIO" autocomplete="off">
                     <span></span>
                 </div>
                 <div class="col-md-12">
                     <label for="Senha" class="form-label">Senha</label>
-                    <input type="password" class="form-control" id="Senha" name="SENHA" autocomplete="off">
+                    <input type="password" class="form-control" id="Senha" required name="SENHA" autocomplete="off">
                     <span></span>
                 </div>
-
+                <div class="col-md-12">
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="Medico" required name="MEDICO">
+                        <label class="form-check-label" for="Medico">Você é médico ?</label>
+                    </div>
+                </div>
+                <div class="isDoc">
+                    <div class="col-md-5 ">
+                        <label for="Especialidade" class="form-label">Especialidade</label>
+                        <input type="text" class="form-control" id="Especialidade" required name="ESPECIALIDADE" autocomplete="off">
+                        <span></span>
+                    </div>
+                    <div class="col-md-5">
+                        <label for="CRM" class="form-label">CRM</label>
+                        <input type="text" class="form-control" id="CRM" required name="CRM" autocomplete="off">
+                        <span></span>
+                    </div>
+                </div>
 
 
                 <div class="col-md-12">
@@ -135,88 +152,98 @@
         </main>
         <script>
             window.onload = function() {
-                document.forms.Cadastro.onsubmit = validaForm;
-                console.log(document.forms.Cadastro.onsubmit);
+
+                const isDoc = document.querySelector(".isDoc");
+                const openFormDoc = document.querySelector("input[name=MEDICO]");
+
+
+                openFormDoc.addEventListener("change", function() {
+                    if (this.checked) {
+                        isDoc.style.display = "block"
+                        console.log("Checkbox is checked..");
+                    } else {
+                        isDoc.style.display = "none"
+                        console.log("Checkbox is not checked..");
+                    }
+                })
+
+
+                // document.forms.Cadastro.onsubmit = validaForm;
             }
 
-            function validaForm(e) {
+            // function validaForm(e) {
 
-                let form = e.target;
-                let formValido = true;
+            //     let form = e.target;
+            //     let formValido = true;
 
-                const spanNOME = form.NOME.nextElementSibling;
-                const spanEMAIL = form.EMAIL.nextElementSibling;
-                const spanTELEFONE = form.TELEFONE.nextElementSibling;
-                const spanCEP = form.CEP.nextElementSibling;
-                const spanLOGRADOURO = form.LOGRADOURO.nextElementSibling;
-                const spanBAIRRO = form.BAIRRO.nextElementSibling;
-                const spanCIDADE = form.CIDADE.nextElementSibling;
-                const spanDATE = form.DATE.nextElementSibling;
-                const spanSALARIO = form.SALARIO.nextElementSibling;
-                const spanSENHA = form.SENHA.nextElementSibling;
+            //     const spanNOME = form.NOME.nextElementSibling;
+            //     const spanEMAIL = form.EMAIL.nextElementSibling;
+            //     const spanTELEFONE = form.TELEFONE.nextElementSibling;
+            //     const spanCEP = form.CEP.nextElementSibling;
+            //     const spanLOGRADOURO = form.LOGRADOURO.nextElementSibling;
+            //     const spanBAIRRO = form.BAIRRO.nextElementSibling;
+            //     const spanCIDADE = form.CIDADE.nextElementSibling;
+            //     const spanSALARIO = form.SALARIO.nextElementSibling;
+            //     const spanSENHA = form.SENHA.nextElementSibling;
 
 
-                spanNOME.textContent = "";
-                spanEMAIL.textContent = "";
-                spanTELEFONE.textContent = "";
-                spanCEP.textContent = "";
-                spanLOGRADOURO.textContent = "";
-                spanBAIRRO.textContent = "";
-                spanCIDADE.textContent = "";
-                spanDATE.textContent = "";
-                spanSALARIO.textContent = "";
-                spanSENHA.textContent = "";
+            //     spanNOME.textContent = "";
+            //     spanEMAIL.textContent = "";
+            //     spanTELEFONE.textContent = "";
+            //     spanCEP.textContent = "";
+            //     spanLOGRADOURO.textContent = "";
+            //     spanBAIRRO.textContent = "";
+            //     spanCIDADE.textContent = "";
+            //     spanSALARIO.textContent = "";
+            //     spanSENHA.textContent = "";
 
-                if (form.NOME.value === "") {
-                    spanNOME.textContent = 'O nome deve ser preenchido';
-                    formValido = false;
-                }
+            //     if (form.NOME.value === "") {
+            //         spanNOME.textContent = 'O nome deve ser preenchido';
+            //         formValido = false;
+            //     }
 
-                if (form.EMAIL.value === "") {
-                    spanEMAIL.textContent = 'O email deve ser preenchido';
-                    formValido = false;
-                }
+            //     if (form.EMAIL.value === "") {
+            //         spanEMAIL.textContent = 'O email deve ser preenchido';
+            //         formValido = false;
+            //     }
 
-                if (form.TELEFONE.value === "") {
-                    spanTELEFONE.textContent = 'O telefone deve ser preenchido';
-                    formValido = false;
-                }
-                if (form.CEP.value === "") {
-                    spanCEP.textContent = 'O cep deve ser preenchido';
-                    formValido = false;
-                }
+            //     if (form.TELEFONE.value === "") {
+            //         spanTELEFONE.textContent = 'O telefone deve ser preenchido';
+            //         formValido = false;
+            //     }
+            //     if (form.CEP.value === "") {
+            //         spanCEP.textContent = 'O cep deve ser preenchido';
+            //         formValido = false;
+            //     }
 
-                if (form.LOGRADOURO.value === "") {
-                    spanLOGRADOURO.textContent = 'O logradouro deve ser preenchido';
-                    formValido = false;
-                }
+            //     if (form.LOGRADOURO.value === "") {
+            //         spanLOGRADOURO.textContent = 'O logradouro deve ser preenchido';
+            //         formValido = false;
+            //     }
 
-                if (form.BAIRRO.value === "") {
-                    spanBAIRRO.textContent = 'O bairro deve ser preenchido';
-                    formValido = false;
-                }
+            //     if (form.BAIRRO.value === "") {
+            //         spanBAIRRO.textContent = 'O bairro deve ser preenchido';
+            //         formValido = false;
+            //     }
 
-                if (form.CIDADE.value === "") {
-                    spanCIDADE.textContent = 'A cidade deve ser preenchida';
-                    formValido = false;
-                }
-                if (form.DATE.value === "") {
-                    spanDATE.textContent = 'A data deve ser preenchida';
-                    formValido = false;
-                }
-                if (form.SALARIO.value === "") {
-                    spanSALARIO.textContent = 'A salário deve ser preenchida';
-                    formValido = false;
-                }
-                if (form.SENHA.value === "") {
-                    spanSENHA.textContent = 'A senha deve ser preenchida';
-                    formValido = false;
-                }
+            //     if (form.CIDADE.value === "") {
+            //         spanCIDADE.textContent = 'A cidade deve ser preenchida';
+            //         formValido = false;
+            //     }
 
-                console.log(formValido);
-                return formValido;
+            //     if (form.SALARIO.value === "") {
+            //         spanSALARIO.textContent = 'A salário deve ser preenchida';
+            //         formValido = false;
+            //     }
+            //     if (form.SENHA.value === "") {
+            //         spanSENHA.textContent = 'A senha deve ser preenchida';
+            //         formValido = false;
+            //     }
 
-            }
+            //     console.log(formValido);
+            //     return formValido;
+
+            // }
         </script>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-popRpmFF9JQgExhfw5tZT4I9/CI5e2QcuUZPOVXb1m7qUmeR2b50u+YFEYe1wgzy" crossorigin="anonymous"></script>
