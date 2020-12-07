@@ -90,27 +90,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <input type="text" class="form-control" id="CEP" placeholder="CEP" name="cep" autocomplete="off" required>
                     <label for="CEP" class="form-label">CEP</label>
-                    <span></span>
+
                 </div>
 
                 <div class="col-md-8 form-floating">
                     <input type="text" class="form-control" id="LOGRADOURO" placeholder="LOGRADOURO" name="logradouro" autocomplete="off" required>
                     <label for="LOGRADOURO" class="form-label">Logradouro</label>
-                    <span></span>
+
 
                 </div>
 
                 <div class="col-md-12 form-floating">
                     <input type="text" class="form-control" id="BAIRRO" placeholder="BAIRRO" name="bairro" autocomplete="off" required>
                     <label for="BAIRRO" class="form-label">Bairro</label>
-                    <span></span>
+
 
                 </div>
 
                 <div class="col-md-8">
                     <label for="CIDADE" class="form-label">Cidade</label>
                     <input type="text" class="form-control" id="CIDADE" name="cidade" autocomplete="off" required>
-                    <span></span>
+
                 </div>
 
                 <div class="col-md-4">
@@ -144,7 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <option value="SP">SP</option>
                         <option value="SE">SE</option>
                         <option value="TO">TO</option>
-                        <span></span>
+
                     </select>
                 </div>
 

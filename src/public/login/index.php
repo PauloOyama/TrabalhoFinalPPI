@@ -98,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="password" class="form-control" id="senha" name="senha" autocomplete="off" required>
                 </div>
                 <div class="col-md-12 d-grid">
-                    <button type="submit" class="btn btn-primary" style="background-color: #f34213;color: #ffffff">Entrar</button>
+                    <button type="submit" class="btn " style="background-color: #f34213; color: #ffffff">Entrar</button>
                 </div>
 
             </form>
@@ -107,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="modal-content">
                         <div class="modal-body" id="modal-text"></div>
                         <div class="modal-footer d-grid gap-2">
-                                <button data-dismiss="modal" class="btn btn-primary" background-color: #f34213;color: #ffffff>Ok</button> 
+                            <button data-dismiss="modal" class="btn " style="background-color: #f34213; color: #ffffff">Ok</button>
                         </div>
                     </div>
                 </div>
