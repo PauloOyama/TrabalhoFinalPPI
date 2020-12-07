@@ -6,3 +6,8 @@ main {
 main>h2 {
     margin-bottom: 10px;
 }
+
+form {
+    padding-left: 200px;
+    padding-right: 200px;
+}

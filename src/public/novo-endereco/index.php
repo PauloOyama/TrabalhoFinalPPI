@@ -96,17 +96,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="container topics">
         <main id="homeMain">
-            <h2 class="centralizaX">Novo Endereço</h2>
+            <h2 class="centralizaX" id="simpleMargin">Novo Endereço</h2>
             <form class="row gx-2 gy-4" action="./" method="POST" name="Cadastro">
 
-                <div class="col-md-12 form-floating">
+                <div class="col-md-4 form-floating">
 
                     <input type="text" class="form-control" id="CEP" placeholder="CEP" name="cep" autocomplete="off" required>
                     <label for="CEP" class="form-label">CEP</label>
                     <span></span>
                 </div>
 
-                <div class="col-md-12 form-floating">
+                <div class="col-md-8 form-floating">
                     <input type="text" class="form-control" id="LOGRADOURO" placeholder="LOGRADOURO" name="logradouro" autocomplete="off">
                     <label for="LOGRADOURO" class="form-label">Logradouro</label>
                     <span></span>
@@ -129,10 +129,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="col-md-4">
                     <label for="ESTADO" class="form-label">Estado</label>
                     <select name="estado" id="ESTADO" class="form-select">
-                        <option value="MG">MG</option>
-                        <option value="SP">SP</option>
-                        <option value="RJ">RJ</option>
+                    <option disabled selected value> - - - </option>
+                        <option value="AC">AC</option>
+                        <option value="AL">AL</option>
+                        <option value="AP">AP</option>
+                        <option value="AM">AM</option>
                         <option value="BA">BA</option>
+                        <option value="CE">CE</option>
+                        <option value="DF">DF</option>
+                        <option value="ES">ES</option>
+                        <option value="GO">GO</option>
+                        <option value="MA">MA</option>
+                        <option value="MT">MT</option>
+                        <option value="MS">MS</option>
+                        <option value="MG">MG</option>
+                        <option value="PA">PA</option>
+                        <option value="PB">PB</option>
+                        <option value="PR">PR</option>
+                        <option value="PE">PE</option>
+                        <option value="PI">PI</option>
+                        <option value="RJ">RJ</option>
+                        <option value="RN">RN</option>
+                        <option value="RS">RS</option>
+                        <option value="RO">RO</option>
+                        <option value="RR">RR</option>
+                        <option value="SC">SC</option>
+                        <option value="SP">SP</option>
+                        <option value="SE">SE</option>
+                        <option value="TO">TO</option>
                         <span></span>
                     </select>
                 </div>

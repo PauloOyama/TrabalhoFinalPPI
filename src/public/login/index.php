@@ -111,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="password" class="form-control" id="senha" name="senha" autocomplete="off" required>
                 </div>
 
-                <div class="col-md-12">
+                <div class="col-md-12 centralizaX">
                     <button type="submit" class="btn btn-primary btn-lg btn-block">
                         Entrar
                     </button>

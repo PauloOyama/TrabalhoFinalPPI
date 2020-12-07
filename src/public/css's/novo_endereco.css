@@ -3,8 +3,8 @@ main {
     padding: 10px;
 }
 
-main>h2 {
-    margin-bottom: 10px;
+#simpleMargin {
+    margin-bottom: 20px;
 }
 
 div span {
