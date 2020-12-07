@@ -98,10 +98,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <input type="password" class="form-control" id="senha" name="senha" autocomplete="off" required>
                 </div>
 
-                <div class="col-md-12 centralizaX">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">
-                        Entrar
-                    </button>
+                <div class="col-md-12 d-grid">
+                    <button type="submit" class="btn btn-primary">Entrar</button>
                 </div>
 
             </form>
@@ -110,8 +108,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <div class="modal-content">
                         <div class="modal-body" id="modal-text">
                         </div>
-                        <div class="modal-footer">
-                            <button data-dismiss="modal" class="btn btn-primary">Ok</button>
+                        <div class="modal-footer d-grid gap-2">
+                         
+                                <button data-dismiss="modal" class="btn btn-primary">Ok</button> 
+                           
                         </div>
                     </div>
                 </div>
