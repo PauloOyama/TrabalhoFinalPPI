@@ -75,3 +75,7 @@ h2 {
 .dropdown-item:hover {
     color: #f67451 !important;
 }
+
+#itemDropDown {
+    color: red;
+}
