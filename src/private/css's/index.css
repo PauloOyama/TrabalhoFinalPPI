@@ -1,12 +1,12 @@
 main {
-    background-color: white;
-    padding: 20px;
+  background-color: white;
+  padding: 20px;
 }
 
 div span {
-    color: red;
+  color: red;
 }
 
 .isDoc {
-    display: none;
+  display: none;
 }
