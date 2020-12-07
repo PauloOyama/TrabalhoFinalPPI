@@ -23,8 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         SQL;
     $query = $pdo->prepare($sql);
     $query->execute([$_POST["cep"]]);
-    if ($query->fetch())
+    if ($query->fetch()) {
+        http_response_code(409);
         return_err("CEP já existente");
+    }
 
     $sql = <<<SQL
         INSERT INTO base_enderecos_ajax (cep, logradouro, bairro, cidade, estado)

@@ -10,32 +10,19 @@ function return_err($msg, $code = 400)
 
 function authenticate($pdo, $email, $senha)
 {
-    $sql_pessoa = <<<SQL
-    SELECT email, codigo
-    FROM pessoa
-    WHERE email = ?
-    SQL;
-    $sql_funcionario = <<<SQL
+    $sql = <<<SQL
     SELECT senha_hash
-    FROM funcionario
-    WHERE codigo = ?
+    FROM pessoa INNER JOIN funcionario ON pessoa.codigo = funcionario.codigo
+    WHERE email = ?
     SQL;
 
     try {
-        $stmt = $pdo->prepare($sql_pessoa);
+        $stmt = $pdo->prepare($sql);
         $stmt->execute([$email]);
         $row = $stmt->fetch();
         if (!$row)
             return false; // nenhum resultado (email não encontrado)
-        else {
-            $stmt = $pdo->prepare($sql_funcionario);
-            $stmt->execute([$row["codigo"]]);
-            $hash_row = $stmt->fetch();
-            if ($hash_row)  // garante a verificação só para query bem sucedida
-                return password_verify($senha, $hash_row['senha_hash']);
-            else
-                return false;
-        }
+        return password_verify($senha, $row["senha_hash"]);
     } catch (Exception $e) {
         exit('Falha inesperada: ' . $e->getMessage());
     }
