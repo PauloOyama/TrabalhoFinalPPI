@@ -176,9 +176,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         function sendPageForm(event) {
             event.preventDefault();
-            formInfo = new FormData(document.querySelector("form"));
+            let formInfo = new FormData(document.querySelector("form"));
 
-            httpReq = new XMLHttpRequest();
+            let httpReq = new XMLHttpRequest();
 
             httpReq.onreadystatechange = function() {
                 if (httpReq.readyState === XMLHttpRequest.DONE) {
