@@ -116,7 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="col-md-4">
                     <label for="ESTADO" class="form-label">Estado</label>
                     <select name="estado" id="ESTADO" class="form-select" required>
-                    <option disabled selected value> - - - </option>
+                        <option disabled selected value> - - - </option>
                         <option value="AC">AC</option>
                         <option value="AL">AL</option>
                         <option value="AP">AP</option>
@@ -149,7 +149,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
 
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn " style="background-color: #f34213;color: #ffffff">
                         Cadastrar
                     </button>
                 </div>
@@ -162,7 +162,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="modal-body" id="modal-text">
                         </div>
                         <div class="modal-footer">
-                            <button data-dismiss="modal" class="btn btn-primary">Ok</button>
+                            <button data-dismiss="modal" class="btn " style="background-color: #f34213;color: #ffffff">Ok</button>
                         </div>
                     </div>
                 </div>
@@ -177,20 +177,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         function sendPageForm(event) {
             event.preventDefault();
             formInfo = new FormData(document.querySelector("form"));
-            
+
             httpReq = new XMLHttpRequest();
-            
+
             httpReq.onreadystatechange = function() {
                 if (httpReq.readyState === XMLHttpRequest.DONE) {
                     if (httpReq.status === 200) {
                         document.getElementById("modal-text").innerText = "Endereço adicionado com sucesso";
                         modalSucesso.show();
-                    }
-                    else if (httpReq.status === 409) {
+                    } else if (httpReq.status === 409) {
                         document.getElementById("modal-text").innerText = "Este CEP já existe";
                         modalSucesso.show();
-                    }
-                    else
+                    } else
                         alert("Falha crítica");
                 }
             }
