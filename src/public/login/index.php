@@ -1,4 +1,6 @@
 <?php
+if ($_SERVER["REQUEST_METHOD"] == "POST")
+    header('Content-Type: application/json');
 include_once "../../db.php";
 include_once "../../common.php";
 
@@ -12,24 +14,22 @@ function authenticate($pdo, $email, $senha)
 
     $query = run_sql($pdo, $sql, [$email]);
     $row = $query->fetch();
-    if (!$row)
-        return false;
-    return password_verify($senha, $row["senha_hash"]);
+    if (!$row) 
+        return_err("INVALID_EMAIL", 401);
+    if (!password_verify($senha, $row["senha_hash"]))
+        return_err("INVALID_PASS", 401);
+    echo json_encode(["LOGIN" => true]);
+    exit();
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    header("Content-Type: application/json; charset=UTF-8");
     $expected_keys = ["email", "senha"];
     validate_keys($expected_keys, $_POST);
 
     extract($_POST);
 
     // Caso a autenticação não dê certo, um 401 unauthorized é retornado.
-    if (authenticate($pdo, $email, $senha)) {
-        echo json_encode(["LOGIN" => true]);
-        exit();
-    }
-    return_err("INVALID_CREDS", 401);
+    authenticate($pdo, $email, $senha);
 }
 ?>
 <!DOCTYPE html>
@@ -128,6 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             formInfo = new FormData(document.querySelector("form"));
             
             httpReq = new XMLHttpRequest();
+            httpReq.responseType = "json";
             
             httpReq.onreadystatechange = function() {
                 if (httpReq.readyState === XMLHttpRequest.DONE) {
@@ -137,7 +138,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         modalLogin.show();
                     }
                     else if (httpReq.status === 401) {
-                        document.getElementById("modal-text").innerText = "Credenciais inválidas";
+                        if (httpReq.response["ERR"] == "INVALID_EMAIL")
+                            document.getElementById("modal-text").innerText = "Email inválido";
+                        else
+                            document.getElementById("modal-text").innerText = "Senha inválida.";
                         modalLogin.show();
                     }
                     else {
