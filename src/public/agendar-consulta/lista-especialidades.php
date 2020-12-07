@@ -1,5 +1,5 @@
 <?php
-include_once '../db.php';
+include_once '../../db.php';
 header("Content-Type: application/json; charset=UTF-8");
 
 $sql = <<<SQL
