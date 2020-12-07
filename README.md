@@ -3,7 +3,7 @@
 ## Private
 
 - [x] ~~Cadastro de funcionario~~
-- [x] Cadastro de Paciente
+- [x] ~~Cadastro de Paciente~~
 
 ### Listagens dos Dados
 
