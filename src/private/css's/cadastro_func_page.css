@@ -1,0 +1,12 @@
+main {
+    background-color: white;
+    padding: 10px;
+}
+
+div span {
+    color: red;
+}
+
+.isDoc {
+    display: none;
+}
