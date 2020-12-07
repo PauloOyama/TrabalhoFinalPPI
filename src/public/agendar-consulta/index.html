@@ -53,49 +53,69 @@
 
 <div class="container topics">
   <main id="homeMain">
-    <h2 class="centralizaX">Novo Endereço</h2>
+    <h2 class="centralizaX">Consulta</h2>
     <form class="row gx-2 gy-4" action="./" method="POST" name="Cadastro">
 
-      <div class="col-md-12 form-floating">
-
-        <input type="text" class="form-control" id="CEP" placeholder="CEP" name="cep" autocomplete="off">
-        <label for="CEP" class="form-label">CEP</label>
-      </div>
-
-      <div class="col-md-12 form-floating">
-        <input type="text" class="form-control" id="LOGRADOURO" placeholder="LOGRADOURO" name="logradouro"
-          autocomplete="off">
-        <label for="LOGRADOURO" class="form-label">Logradouro</label>
-
-      </div>
-
-      <div class="col-md-12 form-floating">
-        <input type="text" class="form-control" id="BAIRRO" placeholder="BAIRRO" name="bairro" autocomplete="off">
-        <label for="BAIRRO" class="form-label">Bairro</label>
-
-      </div>
-
-      <div class="col-md-8">
-        <label for="CIDADE" class="form-label">Cidade</label>
-        <input type="text" class="form-control" id="CIDADE" name="cidade" autocomplete="off">
-
-      </div>
-
       <div class="col-md-4">
-        <label for="ESTADO" class="form-label">Estado</label>
-        <select name="estado" id="ESTADO" class="form-select">
-          <option value="MG">MG</option>
-          <option value="SP">SP</option>
-          <option value="RJ">RJ</option>
-          <option value="BA">BA</option>
+        <label for="especialidade" class="form-label">Especialidade médica</label>
+        <select name="especialidade" id="especialidade" class="form-select">
+          <option value="">Cardiologista</option>
+          <option value="">Oftamologista</option>
+          <option value="">Neurologista</option>
         </select>
       </div>
 
+      <div class="col-md-8">
+        <label for="medicoEspecialista" class="form-label">Nome do médico especialista</label>
+        <select name="medicoEspecialista" id="medicoEspecialista" class="form-select">
+          <option value="">Doutor sem doutorado 1</option>
+          <option value="">Doutor sem doutorado 2</option>
+          <option value="">Doutor sem doutorado 3</option>
+        </select>
+      </div>
+
+      <div class="col-md-4">
+        <label for="data" class="form-label">Data</label>
+        <input type="date" class="form-control" id="data" name="data">
+      </div>
+      <div class="col-md-2">
+        <label for="horarioDisponivel" class="form-label">Horário para à consulta</label>
+        <select name="horarioDisponivel" id="horarioDisponivel" class="form-select">
+          <option value="8">8:00</option>
+          <option value="9">9:00</option>
+          <option value="10">10:00</option>
+          <option value="11">11:00</option>
+          <option value="12">12:00</option>
+          <option value="13">13:00</option>
+          <option value="14">14:00</option>
+          <option value="15">15:00</option>
+          <option value="16">16:00</option>
+          <option value="17">17:00</option>
+        </select>
+      </div>
+
+      <h2 class="centralizaX">Dados do Paciente</h2>
+      <div class="col-md-6 ">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="nome" class="form-control" id="nome" name="nome" autocomplete="off">
+      </div>
+      <div class="col-md-6 ">
+        <label for="Email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="Email" placeholder="Ex: arel@vidal.com" name="email"
+          autocomplete="off">
+      </div>
+      <div class="col-md-4 ">
+        <label for="telefone" class="form-label">Telefone</label>
+        <input type="number" class="form-control" id="telefone" name="telefone" placeholder="Ex: (xx) xxxxx-xxxx"
+          maxlength="11" autocomplete="off">
+      </div>
       <div class="col-md-12">
         <button type="submit" class="btn btn-primary">
-          Cadastrar
+          Agendar
         </button>
       </div>
+
+
 
     </form>
   </main>
