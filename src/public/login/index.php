@@ -81,14 +81,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#quemSomos">Conheça-nos
+                        <a class="nav-link" href="/public/#quemSomos">Conheça-nos
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#visao">Visão</a>
+                        <a class="nav-link" href="/public/#visao">Visão</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#valores">Valores</a>
+                        <a class="nav-link" href="/public/#valores">Valores</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -107,6 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
     </nav>
+
 
     <div class="container topics">
         <main id="homeMain">

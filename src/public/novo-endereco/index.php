@@ -64,14 +64,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#quemSomos">Conheça-nos
+                        <a class="nav-link" href="/public/#quemSomos">Conheça-nos
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#visao">Visão</a>
+                        <a class="nav-link" href="/public/#visao">Visão</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#valores">Valores</a>
+                        <a class="nav-link" href="/public/#valores">Valores</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -101,24 +101,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <input type="text" class="form-control" id="CEP" placeholder="CEP" name="cep" autocomplete="off">
                     <label for="CEP" class="form-label">CEP</label>
+                    <span></span>
                 </div>
 
                 <div class="col-md-12 form-floating">
                     <input type="text" class="form-control" id="LOGRADOURO" placeholder="LOGRADOURO" name="logradouro" autocomplete="off">
                     <label for="LOGRADOURO" class="form-label">Logradouro</label>
+                    <span></span>
 
                 </div>
 
                 <div class="col-md-12 form-floating">
                     <input type="text" class="form-control" id="BAIRRO" placeholder="BAIRRO" name="bairro" autocomplete="off">
                     <label for="BAIRRO" class="form-label">Bairro</label>
+                    <span></span>
 
                 </div>
 
                 <div class="col-md-8">
                     <label for="CIDADE" class="form-label">Cidade</label>
                     <input type="text" class="form-control" id="CIDADE" name="cidade" autocomplete="off">
-
+                    <span></span>
                 </div>
 
                 <div class="col-md-4">
@@ -128,6 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <option value="SP">SP</option>
                         <option value="RJ">RJ</option>
                         <option value="BA">BA</option>
+                        <span></span>
                     </select>
                 </div>
 
