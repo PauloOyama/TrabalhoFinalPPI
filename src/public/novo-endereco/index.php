@@ -1,19 +1,14 @@
 <?php
-include_once "../db.php";
+include_once "../../db.php";
+include_once "../../common.php";
 
-function return_err($msg, $code = 400)
-{
-    http_response_code($code);
-    echo json_encode(["ERR_MSG" => $msg], JSON_UNESCAPED_UNICODE);
-    exit();
-}
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Content-Type: application/json; charset=UTF-8");
     $expected_keys = ["cep", "logradouro", "bairro", "cidade", "estado"];
-    foreach ($expected_keys as $key)
-        if (!array_key_exists($key, $_POST))
-            return_err("Requisição inválida -- campos faltando");
+    validate_keys($expected_keys, $_POST);
+
+    extract($_POST);
 
     // Verifica se o CEP já existe na base de dados
     $sql = <<<SQL
@@ -21,26 +16,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         FROM base_enderecos_ajax
         WHERE CEP = ?
         SQL;
-    $query = $pdo->prepare($sql);
-    $query->execute([$_POST["cep"]]);
+    $query = run_sql($pdo, $sql, [$cep]);
     if ($query->fetch()) {
         http_response_code(409);
-        return_err("CEP já existente");
+        return_err("CEP_EXISTS");
     }
 
+    // Insere o endereço
     $sql = <<<SQL
         INSERT INTO base_enderecos_ajax (cep, logradouro, bairro, cidade, estado)
         VALUES (?, ?, ?, ?, ?)
         SQL;
-
-    try {
-        $query = $pdo->prepare($sql);
-        $query->execute([$_POST["cep"], $_POST["logradouro"], $_POST["bairro"], $_POST["cidade"], $_POST["estado"]]);
-        echo json_encode(["STATUS" => true]);
-        exit();
-    } catch (Exception $e) {
-        return_err("Houve um erro na adição do endereço", 500);
-    }
+    $query = run_sql($pdo, $sql, [$cep, $logradouro, $bairro, $cidade, $estado]);
+    echo json_encode(["STATUS" => "ADDR_ADDED"]);
 }
 ?>
 <!DOCTYPE html>

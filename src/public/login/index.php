@@ -1,12 +1,6 @@
 <?php
-include_once "../db.php";
-
-function return_err($msg, $code = 400)
-{
-    http_response_code($code);
-    echo json_encode(["ERR_MSG" => $msg], JSON_UNESCAPED_UNICODE);
-    exit();
-}
+include_once "../../db.php";
+include_once "../../common.php";
 
 function authenticate($pdo, $email, $senha)
 {
@@ -16,33 +10,26 @@ function authenticate($pdo, $email, $senha)
     WHERE email = ?
     SQL;
 
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([$email]);
-        $row = $stmt->fetch();
-        if (!$row)
-            return false; // nenhum resultado (email não encontrado)
-        return password_verify($senha, $row["senha_hash"]);
-    } catch (Exception $e) {
-        exit('Falha inesperada: ' . $e->getMessage());
-    }
+    $query = run_sql($pdo, $sql, [$email]);
+    $row = $query->fetch();
+    if (!$row)
+        return false;
+    return password_verify($senha, $row["senha_hash"]);
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Content-Type: application/json; charset=UTF-8");
     $expected_keys = ["email", "senha"];
-    foreach ($expected_keys as $key)
-        if (!array_key_exists($key, $_POST))
-            return_err("Requisição inválida -- campos faltando");
+    validate_keys($expected_keys, $_POST);
 
-    if (authenticate($pdo, $_POST["email"], $_POST["senha"])) {
-        echo json_encode(["SUCESSO" => true]);
-        exit();
-    } else {
-        http_response_code(401);
-        echo json_encode(["SUCESSO" => false]);
+    extract($_POST);
+
+    // Caso a autenticação não dê certo, um 401 unauthorized é retornado.
+    if (authenticate($pdo, $email, $senha)) {
+        echo json_encode(["LOGIN" => true]);
         exit();
     }
+    return_err("INVALID_CREDS", 401);
 }
 ?>
 <!DOCTYPE html>
