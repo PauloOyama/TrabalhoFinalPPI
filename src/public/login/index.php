@@ -14,7 +14,7 @@ function authenticate($pdo, $email, $senha)
 
     $query = run_sql($pdo, $sql, [$email]);
     $row = $query->fetch();
-    if (!$row) 
+    if (!$row)
         return_err("INVALID_EMAIL", 401);
     if (!password_verify($senha, $row["senha_hash"]))
         return_err("INVALID_PASS", 401);
@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
 
                 <div class="col-md-12 centralizaX">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">
+                    <button type="submit" class="btn btn-lg btn-block" style="background-color: #f34213;color: #ffffff">
                         Entrar
                     </button>
                 </div>
@@ -111,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <div class="modal-body" id="modal-text">
                         </div>
                         <div class="modal-footer">
-                            <button data-dismiss="modal" class="btn btn-primary">Ok</button>
+                            <button data-dismiss="modal" class="btn " style="background-color: #f34213;color: #ffffff">Ok</button>
                         </div>
                     </div>
                 </div>
@@ -126,25 +126,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         function sendPageForm(event) {
             event.preventDefault();
             formInfo = new FormData(document.querySelector("form"));
-            
+
             httpReq = new XMLHttpRequest();
             httpReq.responseType = "json";
-            
+
             httpReq.onreadystatechange = function() {
                 if (httpReq.readyState === XMLHttpRequest.DONE) {
                     if (httpReq.status === 200) {
                         document.getElementById("modal-text").innerText = "Login feito com sucesso.";
                         window.open(`${window.location.protocol}//${window.location.host}/private/`);
                         modalLogin.show();
-                    }
-                    else if (httpReq.status === 401) {
+                    } else if (httpReq.status === 401) {
                         if (httpReq.response["ERR"] == "INVALID_EMAIL")
                             document.getElementById("modal-text").innerText = "Email inválido";
                         else
                             document.getElementById("modal-text").innerText = "Senha inválida.";
                         modalLogin.show();
-                    }
-                    else {
+                    } else {
                         document.getElementById("modal-text").innerText = "Um erro inesperado ocorreu";
                         modalLogin.show();
                     }
