@@ -1,7 +1,8 @@
 <?php
 include_once "../db.php";
 
-function return_err($msg, $code = 400) {
+function return_err($msg, $code = 400)
+{
     http_response_code($code);
     echo json_encode(["ERR_MSG" => $msg], JSON_UNESCAPED_UNICODE);
     exit();
@@ -11,8 +12,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     header("Content-Type: application/json; charset=UTF-8");
     $expected_keys = ["cep", "logradouro", "bairro", "cidade", "estado"];
     foreach ($expected_keys as $key)
-      if (!array_key_exists($key, $_POST))
-          return_err("Requisição inválida -- campos faltando");
+        if (!array_key_exists($key, $_POST))
+            return_err("Requisição inválida -- campos faltando");
 
     // Verifica se o CEP já existe na base de dados
     $sql = <<<SQL
@@ -29,14 +30,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         INSERT INTO base_enderecos_ajax (cep, logradouro, bairro, cidade, estado)
         VALUES (?, ?, ?, ?, ?)
         SQL;
-    
+
     try {
         $query = $pdo->prepare($sql);
         $query->execute([$_POST["cep"], $_POST["logradouro"], $_POST["bairro"], $_POST["cidade"], $_POST["estado"]]);
         echo json_encode(["STATUS" => true]);
         exit();
-    }
-    catch (Exception $e) {
+    } catch (Exception $e) {
         return_err("Houve um erro na adição do endereço", 500);
     }
 }
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top ">
         <div class="container">
-            <img src="../src/cardiograma.svg" alt="Logo" class="logo" />
+            <img src="/public/svg/cardiograma.svg" alt="Logo" class="logo" />
             <h2 class="navbar-brand">Clinica São Miguel</h2>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -64,23 +64,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="../">Quem Somos?
+                        <a class="nav-link" href="#quemSomos">Conheça-nos
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../">Visão</a>
+                        <a class="nav-link" href="#visao">Visão</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="../">Valores</a>
+                        <a class="nav-link" href="#valores">Valores</a>
                     </li>
-                    <li class=" nav-item dropdown">
+                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Menu
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="../login/">Login</a>
-                            <a class="dropdown-item " href="../novo-endereco/">Cadastro de Endereço</a>
-                            <a class="dropdown-item " href="../galeria/">Galeria</a>
+                            <a class="dropdown-item" href="/public/login/">Login</a>
+                            <a class="dropdown-item " href="/public/novo-endereco/">Cadastro de Endereço</a>
+                            <a class="dropdown-item " href="/public/galeria/">Galeria</a>
+                            <a class="dropdown-item " href="/public/agendar-consulta/">Agendar Consulta</a>
 
 
                         </div>
