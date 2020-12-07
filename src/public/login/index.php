@@ -99,17 +99,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
                 <div class="col-md-12 d-grid">
                     <button type="submit" class="btn btn-primary" style="background-color: #f34213;color: #ffffff">Entrar</button>
-
-
                 </div>
 
             </form>
             <div class="modal fade" id="modal-login">
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-body" id="modal-text">
+                        <div class="modal-body" id="modal-text"></div>
                         <div class="modal-footer d-grid gap-2">
-                         
                                 <button data-dismiss="modal" class="btn btn-primary" background-color: #f34213;color: #ffffff>Ok</button> 
                         </div>
                     </div>
