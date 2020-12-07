@@ -17,10 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         WHERE CEP = ?
         SQL;
     $query = run_sql($pdo, $sql, [$cep]);
-    if ($query->fetch()) {
-        http_response_code(409);
-        return_err("CEP_EXISTS");
-    }
+    if ($query->fetch())
+        return_err("CEP_EXISTS", 409);
 
     // Insere o endereço
     $sql = <<<SQL
@@ -95,14 +93,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
 
                 <div class="col-md-8 form-floating">
-                    <input type="text" class="form-control" id="LOGRADOURO" placeholder="LOGRADOURO" name="logradouro" autocomplete="off">
+                    <input type="text" class="form-control" id="LOGRADOURO" placeholder="LOGRADOURO" name="logradouro" autocomplete="off" required>
                     <label for="LOGRADOURO" class="form-label">Logradouro</label>
                     <span></span>
 
                 </div>
 
                 <div class="col-md-12 form-floating">
-                    <input type="text" class="form-control" id="BAIRRO" placeholder="BAIRRO" name="bairro" autocomplete="off">
+                    <input type="text" class="form-control" id="BAIRRO" placeholder="BAIRRO" name="bairro" autocomplete="off" required>
                     <label for="BAIRRO" class="form-label">Bairro</label>
                     <span></span>
 
@@ -110,13 +108,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="col-md-8">
                     <label for="CIDADE" class="form-label">Cidade</label>
-                    <input type="text" class="form-control" id="CIDADE" name="cidade" autocomplete="off">
+                    <input type="text" class="form-control" id="CIDADE" name="cidade" autocomplete="off" required>
                     <span></span>
                 </div>
 
                 <div class="col-md-4">
                     <label for="ESTADO" class="form-label">Estado</label>
-                    <select name="estado" id="ESTADO" class="form-select">
+                    <select name="estado" id="ESTADO" class="form-select" required>
                     <option disabled selected value> - - - </option>
                         <option value="AC">AC</option>
                         <option value="AL">AL</option>
@@ -156,11 +154,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
 
             </form>
+
+            <div class="modal fade" id="modal-add">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body" id="modal-text">
+                        </div>
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-primary">Ok</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-popRpmFF9JQgExhfw5tZT4I9/CI5e2QcuUZPOVXb1m7qUmeR2b50u+YFEYe1wgzy" crossorigin="anonymous"></script>
+    <script>
+        let modalSucesso = new bootstrap.Modal(document.getElementById('modal-add'));
 
+        function sendPageForm(event) {
+            event.preventDefault();
+            formInfo = new FormData(document.querySelector("form"));
+            
+            httpReq = new XMLHttpRequest();
+            
+            httpReq.onreadystatechange = function() {
+                if (httpReq.readyState === XMLHttpRequest.DONE) {
+                    if (httpReq.status === 200) {
+                        document.getElementById("modal-text").innerText = "Endereço adicionado com sucesso";
+                        modalSucesso.show();
+                    }
+                    else if (httpReq.status === 409) {
+                        document.getElementById("modal-text").innerText = "Este CEP já existe";
+                        modalSucesso.show();
+                    }
+                    else
+                        alert("Falha crítica");
+                }
+            }
+
+            httpReq.open("POST", "./");
+            httpReq.send(formInfo);
+        }
+
+        document.querySelector("form").addEventListener("submit", sendPageForm);
+    </script>
 </body>
 
 </html>
