@@ -64,7 +64,7 @@ $stmt = $pdo->query($sql);
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown2">
               <a class="dropdown-item " href="/private/listagem_de_dados/lista_enderecos.html">Endereços</a>
-              <a class="dropdown-item " href="/private/listagem_de_dados/lista_todos_agend.html">Agendamentos -
+              <a class="dropdown-item " href="/private/listagem_de_dados/lista_todos_agend.php">Agendamentos -
                 Clientes</a>
               <a class="dropdown-item " href="/private/listagem_de_dados/lista_agend_med.html"
                 style="color:blue;">Agendamentos - Funcionário</a>
@@ -80,8 +80,10 @@ $stmt = $pdo->query($sql);
   <div class="container topics">
 
     <main id="homeMain">
-    <h3>Clientes Cadastrados</h3>
+    <h3 class="centralizaX">Lista de Funcionários</h3>
+    <div class="table-responsive">
     <table class="table table-striped table-hover">
+    <thead>
       <tr>
         <th>Nome</th>
         <th>Email</th>
@@ -92,9 +94,15 @@ $stmt = $pdo->query($sql);
         <th>Data</th>
         <th>Salário</th>
       </tr>
+      </thead>
+      <tbody>
+
 
       <?php
-      while ($row = $stmt->fetch()) {
+      $i = 0;
+while ($row = $stmt->fetch()) {
+        global $i;
+        $i++;
 
         $nome = htmlspecialchars($row['nome']);
         $email = htmlspecialchars($row['email']);
@@ -109,6 +117,7 @@ $stmt = $pdo->query($sql);
 
         echo <<<HTML
           <tr>
+          <th scope="row">$i</th>
             <td>$nome</td> 
             <td>$email</td>
             <td>$telefone</td>
@@ -121,8 +130,9 @@ $stmt = $pdo->query($sql);
         HTML;
       }
       ?>
-
+      <tbody>
     </table>
+    </div>
 
     </main>
     <div class="mt-5"></div>

@@ -5,7 +5,7 @@ include_once "../../common.php";
 
 $sql = <<<SQL
 SELECT *
-FROM pessoa NATURAL JOIN paciente
+FROM agenda
 SQL;
 
 
@@ -22,7 +22,7 @@ $stmt = $pdo->query($sql);
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Tabela Pacientes</title>
+  <title>Agendamento de consultas</title>
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="/utils.css">
@@ -80,26 +80,20 @@ $stmt = $pdo->query($sql);
   <div class="container topics">
 
     <main id="homeMain">
-    <h3 class="centralizaX">Lista de Pacientes</h3>
+    <h3 class="centralizaX">Consultas Agendadas</h3>
     <div class="table-responsive">
     <table class="table table-striped table-hover">
-      <thead>
+    <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Nome</th>
-        <th scope="col">Email</th>
-        <th scope="col">Telefone</th>
-        <th scope="col">Logradouro</th>
-        <th scope="col">Cidade</th>
-        <th scope="col">Estado</th>
-        <th scope="col">Peso</th>
-        <th scope="col">Altura</th>
-        <th scope="col">Tipo Sanguíneo</th>
+        <th>Horário</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Telefone</th>
+        <th>Data</th>
       </tr>
       </thead>
 
       <tbody>
-      
       <?php
 
       $i = 0;
@@ -109,39 +103,29 @@ $stmt = $pdo->query($sql);
         global $i;
         $i++;
 
+        $horario = htmlspecialchars($row['horario']);
         $nome = htmlspecialchars($row['nome']);
         $email = htmlspecialchars($row['email']);
         $telefone = htmlspecialchars($row['telefone']);
-        $logradouro = htmlspecialchars($row['logradouro']);
-        $cidade = htmlspecialchars($row['cidade']);
-        $estado = htmlspecialchars($row['estado']);
-        $peso = htmlspecialchars($row['peso']);
-        $altura = htmlspecialchars($row['altura']);
-        $tipo_sanguineo = htmlspecialchars($row['tipo_sanguineo']);
+
+        $data = new DateTime($row['data_agendamento']);
+        $dataFormatoDiaMesAno = $data->format('d-m-Y');
 
         echo <<<HTML
           <tr>
-          <th scope="row">$i</th>
-            <td >$nome</td> 
-            <td >$email</td>
-            <td >$telefone</td>
-            <td >$logradouro</td>
-            <td >$cidade</td>
-            <td >$estado</td>
-            <td >$peso</td>
-            <td >$altura</td>
-            <td >$tipo_sanguineo</td>
-          </tr> 
-            
+            <td>$horario</td> 
+            <td>$nome</td> 
+            <td>$email</td>
+            <td>$telefone</td>
+            <td>$dataFormatoDiaMesAno</td>
+         
+          </tr>      
         HTML;
       }
-      
       ?>
-
-      </tbody>   
+      </tbody>
     </table>
     </div>
-
     </main>
     <div class="mt-5"></div>
 
