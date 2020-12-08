@@ -133,14 +133,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <div class="col-md-4">
                         <label for="Telefone" class="form-label">Telefone</label>
-                        <input type="tel" class="form-control" id="Telefone" name="telefone" required autocomplete="off"
-                            pattern="\(\d{2}\)\d{5}-\d{4}">
+                        <input type="tel" class="form-control" id="Telefone" name="telefone" placeholder="xxxxxxxxxxx" required autocomplete="off"
+                            pattern="[0-9]{11}">
                         <span></span>
                     </div>
                     <div class="col-md-4">
                         <label for="Cep" class="form-label">CEP</label>
-                        <input type="number" class="form-control" id="Cep" name="cep" required autocomplete="off" min="1"
-                            max="8">
+                        <input type="number" class="form-control" id="Cep" name="cep" required autocomplete="off" pattern="[0-9]{8}">
                         <span></span>
                     </div>
                     <div class="col-md-8">

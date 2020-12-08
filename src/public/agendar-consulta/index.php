@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                </div>
                <div class="col-md-4 ">
                   <label for="telefone" class="form-label">Telefone</label>
-                  <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Ex: (xx) xxxxx-xxxx" pattern="\([0-9]{2}\) [0-9]{5}-[0-9]{4}" autocomplete="off" required><span></span>
+                  <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Ex: xxxxxxxxxxx" pattern="[0-9]{11}" autocomplete="off" required><span></span>
                </div>
                <div class="col-md-12">
                   <button type="submit" class="btn" style="background-color: #f34213;color: #ffffff">

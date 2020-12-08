@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <div class="col-md-4 form-floating">
 
-                    <input type="text" class="form-control" id="CEP" placeholder="CEP" name="cep" autocomplete="off" required>
+                    <input type="text" class="form-control" id="CEP" placeholder="CEP" name="cep" autocomplete="off" pattern="[0-9]{8}" required>
                     <label for="CEP" class="form-label">CEP</label>
 
                 </div>
