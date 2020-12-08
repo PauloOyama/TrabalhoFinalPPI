@@ -131,7 +131,7 @@ while ($row = $stmt->fetch()) {
         HTML;
       }
       ?>
-      <tbody>
+      </tbody>
     </table>
     </div>
 
