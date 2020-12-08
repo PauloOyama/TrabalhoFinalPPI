@@ -1,13 +1,11 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST")
-    header('Content-Type: application/json');
 include_once "../../db.php";
 include_once "../../common.php";
 
 function authenticate($pdo, $email, $senha)
 {
     $sql = <<<SQL
-    SELECT senha_hash
+    SELECT senha_hash, pessoa.codigo
     FROM pessoa INNER JOIN funcionario ON pessoa.codigo = funcionario.codigo
     WHERE email = ?
     SQL;
@@ -18,11 +16,20 @@ function authenticate($pdo, $email, $senha)
         return_err("INVALID_EMAIL", 401);
     if (!password_verify($senha, $row["senha_hash"]))
         return_err("INVALID_PASS", 401);
+
+    // Executa a verificação se o funcionário médico, para configurar um cookie de sessão como médico
+    // (métodos mais seguros incluem usar uma tabela com sessões porém isso é apenas uma demonstração)
+    $sql = "SELECT * FROM medico WHERE codigo = {$row["codigo"]}";
+    $row = $pdo->query($sql);
+    if ($row->fetch())
+        setcookie("session", "medico");
+
     echo json_encode(["LOGIN" => true]);
     exit();
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    header('Content-Type: application/json');
     $expected_keys = ["email", "senha"];
     validate_keys($expected_keys, $_POST);
 
