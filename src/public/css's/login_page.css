@@ -1,14 +1,14 @@
 main {
-    padding: 10px;
-    background-color: white;
+  padding: 10px;
+  background-color: white;
 }
 
-main>h2 {
-    margin-bottom: 10px;
+main > h2 {
+  margin-bottom: 10px;
 }
 
 form {
-    padding-left: 200px;
-    padding-right: 200px;
-    margin-bottom: 20px;
+  padding-left: 5%;
+  padding-right: 5%;
+  margin-bottom: 20px;
 }
