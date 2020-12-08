@@ -85,6 +85,7 @@ $stmt = $pdo->query($sql);
     <table class="table table-striped table-hover">
     <thead>
       <tr>
+        <th>#</th>
         <th>Horário</th>
         <th>Nome</th>
         <th>Email</th>
@@ -113,6 +114,7 @@ $stmt = $pdo->query($sql);
 
         echo <<<HTML
           <tr>
+            <td>$i</td> 
             <td>$horario</td> 
             <td>$nome</td> 
             <td>$email</td>

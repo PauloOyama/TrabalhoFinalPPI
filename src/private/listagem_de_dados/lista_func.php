@@ -85,6 +85,7 @@ $stmt = $pdo->query($sql);
     <table class="table table-striped table-hover">
     <thead>
       <tr>
+        <th>#</th>
         <th>Nome</th>
         <th>Email</th>
         <th>Telefone</th>
