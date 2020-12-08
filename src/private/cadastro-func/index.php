@@ -108,100 +108,87 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </li>
                 </ul>
             </div>
-        </div>
-    </nav>
-    <!-- Page Content -->
-    <div class="container topics">
-        <main id="homeMain">
-            <h2 class="centralizaX">Cadastro de Funcionário</h2>
-            <form class="row gx-2 gy-4" action="index.php" method="POST">
-                <div class="col-md-12">
-                    <label for="nome" class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="nome" name="nome" autocomplete="off" required>
-                    <span></span>
-                </div>
-                <div class="col-md-8 ">
-                    <label for="Email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="Email" placeholder="Ex: ariel@vidal.com" required name="email" autocomplete="off">
-                    <span></span>
-                </div>
-                <div class="col-md-4">
-                    <label for="Telefone" class="form-label">Telefone</label>
-                    <input type="tel" class="form-control" id="Telefone" name="telefone" placeholder="xxxxxxxxxxx" required autocomplete="off" pattern="[0-9]{11}">
-                    <span></span>
-                </div>
-                <div class="col-md-4">
-                    <label for="Cep" class="form-label">CEP</label>
-                    <input type="number" class="form-control" id="Cep" name="cep" required autocomplete="off" pattern="[0-9]{8}">
-                    <span></span>
-                </div>
-                <div class="col-md-8">
-                    <label for="Logradouro" class="form-label">Logradouro</label>
-                    <input type="text" class="form-control" id="Logradouro" required name="logradouro" autocomplete="off">
-                    <span></span>
-                </div>
-                <div class="col-md-12">
-                    <label for="Cidade" class="form-label">Cidade</label>
-                    <input type="text" class="form-control" id="Cidade" required name="cidade" autocomplete="off">
-                    <span></span>
-                </div>
-                <div class="col-md-12">
-                    <label for="Bairro" class="form-label">Bairro</label>
-                    <input type="text" class="form-control" id="Bairro" required name="bairro" autocomplete="off">
-                    <span></span>
-                </div>
-                <div class="col-md-4">
-                    <label for="ESTADO" class="form-label">Estado</label>
-                    <select name="estado" id="ESTADO" class="form-select" required>
-                        <option disabled selected value> - - - </option>
-                        <option value="AC">AC</option>
-                        <option value="AL">AL</option>
-                        <option value="AP">AP</option>
-                        <option value="AM">AM</option>
-                        <option value="BA">BA</option>
-                        <option value="CE">CE</option>
-                        <option value="DF">DF</option>
-                        <option value="ES">ES</option>
-                        <option value="GO">GO</option>
-                        <option value="MA">MA</option>
-                        <option value="MT">MT</option>
-                        <option value="MS">MS</option>
-                        <option value="MG">MG</option>
-                        <option value="PA">PA</option>
-                        <option value="PB">PB</option>
-                        <option value="PR">PR</option>
-                        <option value="PE">PE</option>
-                        <option value="PI">PI</option>
-                        <option value="RJ">RJ</option>
-                        <option value="RN">RN</option>
-                        <option value="RS">RS</option>
-                        <option value="RO">RO</option>
-                        <option value="RR">RR</option>
-                        <option value="SC">SC</option>
-                        <option value="SP">SP</option>
-                        <option value="SE">SE</option>
-                        <option value="TO">TO</option>
-                    </select>
-                </div>
-                <div class="col-md-4">
-                    <label for="Data" class="form-label">Data de Inicío</label>
-                    <input type="date" class="form-control" id="Data" required name="data_in_contrato" autocomplete="off">
-                    <span></span>
-                </div>
-                <div class="col-md-4">
-                    <label for="Salario" class="form-label">Salário</label>
-                    <input type="text" class="form-control" id="Salario" required name="salario" autocomplete="off">
-                    <span></span>
-                </div>
-                <div class="col-md-12">
-                    <label for="Senha" class="form-label">Senha</label>
-                    <input type="password" class="form-control" id="Senha" required name="senha" autocomplete="off">
-                    <span></span>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="Medico" name="medico">
-                        <label class="form-check-label" for="Medico">Você é médico ?</label>
+        </nav>
+        <!-- Page Content -->
+        <div class="container topics">
+            <main id="homeMain">
+                <h2 class="centralizaX">Cadastro de Funcionário</h2>
+                <form class="row gx-2 gy-4" action="index.php" method="POST">
+                    <div class="col-md-12">
+                        <label for="nome" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="nome" name="nome" autocomplete="off" required>
+                        <span></span>
+                    </div>
+                    <div class="col-md-8 ">
+                        <label for="Email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="Email" placeholder="Ex: ariel@vidal.com" required
+                            name="email" autocomplete="off">
+                        <span></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="Telefone" class="form-label">Telefone</label>
+                        <input type="tel" class="form-control" id="Telefone" name="telefone" placeholder="xxxxxxxxxxx" required autocomplete="off"
+                            pattern="[0-9]{11}">
+                        <span></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="Cep" class="form-label">CEP</label>
+                        <input type="text" class="form-control" id="Cep" name="cep" required autocomplete="off" pattern="[0-9]{8}">
+                        <span></span>
+                    </div>
+                    <div class="col-md-8">
+                        <label for="Logradouro" class="form-label">Logradouro</label>
+                        <input type="text" class="form-control" id="Logradouro" required name="logradouro"
+                            autocomplete="off">
+                        <span></span>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="Cidade" class="form-label">Cidade</label>
+                        <input type="text" class="form-control" id="Cidade" required name="cidade" autocomplete="off">
+                        <span></span>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="Bairro" class="form-label">Bairro</label>
+                        <input type="text" class="form-control" id="Bairro" required name="bairro" autocomplete="off">
+                        <span></span>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="ESTADO" class="form-label">Estado</label>
+                        <select name="estado" id="ESTADO" class="form-select" required>
+                            <option disabled selected value> - - - </option>
+                            <option value="AC">AC</option>
+                            <option value="AL">AL</option>
+                            <option value="AP">AP</option>
+                            <option value="AM">AM</option>
+                            <option value="BA">BA</option>
+                            <option value="CE">CE</option>
+                            <option value="DF">DF</option>
+                            <option value="ES">ES</option>
+                            <option value="GO">GO</option>
+                            <option value="MA">MA</option>
+                            <option value="MT">MT</option>
+                            <option value="MS">MS</option>
+                            <option value="MG">MG</option>
+                            <option value="PA">PA</option>
+                            <option value="PB">PB</option>
+                            <option value="PR">PR</option>
+                            <option value="PE">PE</option>
+                            <option value="PI">PI</option>
+                            <option value="RJ">RJ</option>
+                            <option value="RN">RN</option>
+                            <option value="RS">RS</option>
+                            <option value="RO">RO</option>
+                            <option value="RR">RR</option>
+                            <option value="SC">SC</option>
+                            <option value="SP">SP</option>
+                            <option value="SE">SE</option>
+                            <option value="TO">TO</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="Data" class="form-label">Data de Inicío</label>
+                        <input type="date" class="form-control" id="Data" required name="data_in_contrato" autocomplete="off">
+                        <span></span>
                     </div>
                 </div>
                 <div class="isDoc">
@@ -274,11 +261,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                 })
 
-                document.querySelector("form").addEventListener("submit", sendForm);
-            }
-        </script>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-popRpmFF9JQgExhfw5tZT4I9/CI5e2QcuUZPOVXb1m7qUmeR2b50u+YFEYe1wgzy" crossorigin="anonymous"></script>
-</body>
 
+                function preencheEndereco(event) {
+                    // Se o CEP ainda é inválido, termina a função
+                    if (! event.target.validity.valid)
+                        return;
+                    
+                    let httpReq = new XMLHttpRequest();
+                    httpReq.responseType = "json";
+                    httpReq.onreadystatechange = function() {
+                        if (httpReq.readyState === XMLHttpRequest.DONE) {
+                            if (httpReq.status === 200) {
+                                let address = httpReq.response;
+                                document.getElementById("Logradouro").value = address["logradouro"];
+                                document.getElementById("Cidade").value = address["cidade"];
+                                document.getElementById("Bairro").value = address["bairro"];
+                                document.getElementById("ESTADO").value = address["estado"];
+                            }
+                        }
+                    }
+
+                    httpReq.open("GET", `./lista-endereco.php?cep=${encodeURIComponent(event.target.value)}`);
+                    httpReq.send();
+                }
+
+                window.onload = function() {
+                    const isDoc = document.querySelector(".isDoc");
+                    const openFormDoc = document.querySelector("input[name=medico]");
+                    openFormDoc.addEventListener("change", function() {
+                        if (this.checked) {
+                            isDoc.style.display = "block"
+                            document.querySelector("input[name=crm]").setAttribute("required", "");
+                            document.querySelector("input[name=especialidade]").setAttribute("required", "");
+                        } else {
+                            isDoc.style.display = "none";
+                            document.querySelector("input[name=crm]").removeAttribute("required");
+                            document.querySelector("input[name=especialidade]").removeAttribute("required");
+                        }
+                    })
+
+                    document.querySelector("form").addEventListener("submit", sendForm);
+                    document.getElementById("Cep").addEventListener("input", preencheEndereco);
+                }
+            </script>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-popRpmFF9JQgExhfw5tZT4I9/CI5e2QcuUZPOVXb1m7qUmeR2b50u+YFEYe1wgzy"
+            crossorigin="anonymous"></script>
+    </body>
 </html>
