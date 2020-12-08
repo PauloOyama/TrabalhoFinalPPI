@@ -68,8 +68,8 @@ $stmt = $pdo->query($sql);
                 Clientes</a>
               <a class="dropdown-item " href="/private/listagem_de_dados/lista_agend_med.html"
                 style="color:blue;">Agendamentos - Funcionário</a>
-              <a class="dropdown-item" href="/private/listagem_de_dados/lista_func.html">Funcionários</a>
-              <a class="dropdown-item " href="/private/listagem_de_dados/lista_pacientes.html">Pacientes</a>
+              <a class="dropdown-item" href="/private/listagem_de_dados/lista_func.php">Funcionários</a>
+              <a class="dropdown-item " href="/private/listagem_de_dados/lista_pacientes.php">Pacientes</a>
             </div>
           </li>
         </ul>
