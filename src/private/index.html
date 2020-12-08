@@ -38,7 +38,7 @@
               Cadastro
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/private/cadastro_func/index.php">Funcionários</a>
+              <a class="dropdown-item" href="/private/cadastro-func/">Funcionários</a>
               <a class="dropdown-item " href="/private/" style="color:blue;">Pacientes</a>
             </div>
           </li>
@@ -87,7 +87,7 @@
         </div>
         <div class="col-md-4">
           <label for="Cep" class="form-label">CEP</label>
-          <input type="number" class="form-control" id="Cep" name="CEP" required autocomplete="off" min="1" max="8">
+          <input type="number" class="form-control" id="Cep" name="CEP" required autocomplete="off" pattern="[0-9]{8}">
           <span></span>
         </div>
 
