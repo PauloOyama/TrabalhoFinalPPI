@@ -120,7 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
          </main>
       </div>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-popRpmFF9JQgExhfw5tZT4I9/CI5e2QcuUZPOVXb1m7qUmeR2b50u+YFEYe1wgzy" crossorigin="anonymous"></script>
       <script>
          // Usa requisições dinâmicas para preencher a lista de especialidades
          function preencheEspecialidades() {
@@ -226,7 +226,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          function sendForm(event) {
              event.preventDefault();
              let formDados = new FormData(event.target);
-             let modal = new bootstrap.Modal(document.getElementById("staticBackdrop"), {backdrop: true});
+             let modal = new bootstrap.Modal(document.getElementById("staticBackdrop"), {backdrop: 'static'});
          
          
              let httpReq = new XMLHttpRequest();
