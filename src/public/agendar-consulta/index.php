@@ -62,26 +62,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </nav>
       <div class="container topics">
          <main id="homeMain">
-            <h2 class="centralizaX">Consulta</h2>
+            <h2 class="centralizaX" id="simpleMargin">Consulta</h2>
             <form class="row gx-2 gy-4" action="./" method="POST" name="Cadastro">
-               <div class="col-md-4">
+               <div class="col-md-7">
                   <label for="especialidade" class="form-label">Especialidade médica</label>
                   <select name="especialidade" id="especialidade" class="form-select" required>
                      <option disabled selected value="">Carregando Opções...</option>
                   </select>
                </div>
-               <div class="col-md-8">
+               <div class="col-md-5">
                   <label for="medico" class="form-label">Nome do médico especialista</label>
                   <select name="id_medico" id="medico" class="form-select" disabled required>
                      <option disabled selected value="">--</option>
                   </select>
                   <span>Selecione uma especialidade primeiro</span>
                </div>
-               <div class="col-md-4">
+               <div class="col-md-8">
                   <label for="data" class="form-label">Data</label>
                   <input type="date" class="form-control" id="data" name="data_agendamento" disabled required><span>Selecione o médico primeiro</span>
                </div>
-               <div class="col-md-2">
+               <div class="col-md-4">
                   <label for="horarioDisponivel" class="form-label">Horário para à consulta</label>
                   <select name="horario" id="horarioDisponivel" class="form-select" disabled required>
                      <option disabled selected value="">--</option>
@@ -89,15 +89,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   <span>Selecione uma data primeiro</span>
                </div>
                <h2 class="centralizaX">Dados do Paciente</h2>
-               <div class="col-md-6 ">
+               <div class="col-md-4 ">
                   <label for="nome" class="form-label">Nome</label>
                   <input type="text" class="form-control" id="nome" name="nome" autocomplete="off" required><span></span>
                </div>
-               <div class="col-md-6 ">
+               <div class="col-md-5 ">
                   <label for="email" class="form-label">Email</label>
                   <input type="email" class="form-control" id="email" placeholder="Ex: arel@vidal.com" name="email" autocomplete="off" required><span></span>
                </div>
-               <div class="col-md-4 ">
+               <div class="col-md-3 ">
                   <label for="telefone" class="form-label">Telefone</label>
                   <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Ex: xxxxxxxxxxx" pattern="[0-9]{11}" autocomplete="off" required><span></span>
                </div>
