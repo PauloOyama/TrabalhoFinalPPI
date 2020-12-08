@@ -1,3 +1,56 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST")
+  header('Content-Type: application/json');
+
+include_once "../db.php";
+include_once "../common.php";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $expected_keys = [
+    "nome", "email", "telefone", "cep", "logradouro",
+    "bairro", "cidade", "estado", "peso", "altura", "tipo"
+  ];
+  validate_keys($expected_keys, $_POST);
+
+  extract($_POST);
+  try {
+    $sql_pessoa = <<<SQL
+        INSERT INTO pessoa VALUES
+        (default, ?, ?, ?, ?, ?, ?, ?, ?);
+        SQL;
+
+    $sql_paciente = <<<SQL
+        INSERT INTO paciente VALUES
+        (?, ?, ?,?);
+        SQL;
+    $sql_verifica_email = <<<SQL
+        SELECT email FROM pessoa WHERE email = ?
+        SQL;
+
+    $query = run_sql($pdo, $sql_verifica_email, [$email]);
+    if ($query->fetch())
+      return_err("EMAIL_EXISTS", 409);
+
+    $pdo->beginTransaction();
+    $query = $pdo->prepare($sql_pessoa);
+    if (!$query->execute([$nome, $email, $telefone, $cep, $logradouro, $bairro, $cidade, $estado]))
+      throw new Exception("Falha inserção em PESSOA");
+
+    $id_pessoa = $pdo->lastInsertId();
+
+    $query = $pdo->prepare($sql_paciente);
+    if (!$query->execute([$peso, $altura, $tipo, $id_pessoa]))
+      throw new Exception("Falha na inserção em PACIENTE");
+    $pdo->commit();
+    echo json_encode(["STATUS" => true]);
+  } catch (Exception $e) {
+    $pdo->rollback();
+    return_err("Houve um erro inesperado: " . $e->getMessage());
+  }
+  exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -13,8 +66,7 @@
   <link rel="stylesheet" href="/utils.css">
   <link rel="stylesheet" href="/private/css's/index.css">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-CuOF+2SnTUfTwSZjCXf01h7uYhfOBuxIhGKPbfEJ3+FqH/s6cIFN9bGr1HmAg4fQ" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-CuOF+2SnTUfTwSZjCXf01h7uYhfOBuxIhGKPbfEJ3+FqH/s6cIFN9bGr1HmAg4fQ" crossorigin="anonymous">
 
 
 </head>
@@ -26,15 +78,13 @@
     <div class="container">
       <img src="/private/svg/cardiograma.svg" alt="Logo" class="logo" />
       <a class="navbar-brand" href="/private/">Clínica São Miguel</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Cadastro
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -43,15 +93,14 @@
             </div>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Lista de Dados
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown2">
               <a class="dropdown-item " href="/private/listagem_de_dados/lista_todos_agend.php">Agendamentos -
                 Clientes</a>
-              <a class="dropdown-item " href="/private/listagem_de_dados/lista_agend_med.html"
-                >Agendamentos - Funcionário</a>
+              <a class="dropdown-item " href="/private/listagem_de_dados/lista_agend_med.html">Agendamentos -
+                Funcionário</a>
               <a class="dropdown-item" href="/private/listagem_de_dados/lista_func.php">Funcionários</a>
               <a class="dropdown-item " href="/private/listagem_de_dados/lista_pacientes.php">Pacientes</a>
               <a class="dropdown-item " href="/private/listagem_de_dados/lista_enderecos.php">Endereços</a>
@@ -70,45 +119,43 @@
 
         <div class="col-md-12">
           <label for="nome" class="form-label">Nome</label>
-          <input type="text" class="form-control" id="nome" name="NOME" autocomplete="off" required>
+          <input type="text" class="form-control" id="nome" name="nome" autocomplete="off" required>
           <span></span>
         </div>
         <div class="col-md-8 ">
           <label for="Email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="Email" placeholder="Ex: ariel@vidal.com" required name="EMAIL"
-            autocomplete="off">
+          <input type="email" class="form-control" id="Email" placeholder="Ex: ariel@vidal.com" required name="email" autocomplete="off">
           <span></span>
         </div>
         <div class="col-md-4">
           <label for="Telefone" class="form-label">Telefone</label>
-          <input type="tel" class="form-control" id="Telefone" name="TELEFONE" placeholder="xxxxxxxxxxx" required
-            autocomplete="off" pattern="[0-9]{11}">
+          <input type="tel" class="form-control" id="Telefone" name="telefone" placeholder="xxxxxxxxxxx" required autocomplete="off" pattern="[0-9]{11}">
           <span></span>
         </div>
         <div class="col-md-4">
           <label for="Cep" class="form-label">CEP</label>
-          <input type="number" class="form-control" id="Cep" name="CEP" required autocomplete="off" pattern="[0-9]{8}">
+          <input type="number" class="form-control" id="Cep" name="cep" required autocomplete="off" pattern="[0-9]{8}">
           <span></span>
         </div>
 
         <div class="col-md-8">
           <label for="Logradouro" class="form-label">Logradouro</label>
-          <input type="text" class="form-control" id="Logradouro" required name="LOGRADOURO" autocomplete="off">
+          <input type="text" class="form-control" id="Logradouro" required name="logradouro" autocomplete="off">
           <span></span>
         </div>
         <div class="col-md-12">
           <label for="Cidade" class="form-label">Cidade</label>
-          <input type="text" class="form-control" id="Cidade" required name="CIDADE" autocomplete="off">
+          <input type="text" class="form-control" id="Cidade" required name="cidade" autocomplete="off">
           <span></span>
         </div>
         <div class="col-md-12">
           <label for="Bairro" class="form-label">Bairro</label>
-          <input type="text" class="form-control" id="Bairro" required name="BAIRRO" autocomplete="off">
+          <input type="text" class="form-control" id="Bairro" required name="bairro" autocomplete="off">
           <span></span>
         </div>
         <div class="col-md-3">
           <label for="ESTADO" class="form-label">Estado</label>
-          <select name="ESTADO" id="ESTADO" class="form-select" required>
+          <select name="estado" id="ESTADO" class="form-select" required>
             <option disabled selected value> - - - </option>
             <option value="AC">AC</option>
             <option value="AL">AL</option>
@@ -175,13 +222,13 @@
     </main>
     <div class="mt-5"></div>
     <script>
-      window.onload = function () {
+      window.onload = function() {
 
         const isDoc = document.querySelector(".isDoc");
         const openFormDoc = document.querySelector("input[name=MEDICO]");
 
 
-        openFormDoc.addEventListener("change", function () {
+        openFormDoc.addEventListener("change", function() {
           if (this.checked) {
             isDoc.style.display = "block"
             console.log("Checkbox is checked..");
@@ -193,9 +240,7 @@
       }
     </script>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-popRpmFF9JQgExhfw5tZT4I9/CI5e2QcuUZPOVXb1m7qUmeR2b50u+YFEYe1wgzy"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-popRpmFF9JQgExhfw5tZT4I9/CI5e2QcuUZPOVXb1m7qUmeR2b50u+YFEYe1wgzy" crossorigin="anonymous"></script>
 </body>
 
 
