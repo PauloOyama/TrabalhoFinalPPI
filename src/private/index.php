@@ -41,9 +41,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $query = $pdo->prepare($sql_paciente);
     if (!$query->execute([$peso, $altura, $tipo, $id_pessoa]))
       throw new Exception("Falha na inserção em PACIENTE");
+
     $pdo->commit();
     echo json_encode(["STATUS" => true]);
-  } catch (Exception $e) {
+  } 
+  catch (Exception $e) {
     $pdo->rollback();
     return_err("Houve um erro inesperado: " . $e->getMessage());
   }
@@ -124,7 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <div class="col-md-4">
                         <label for="Cep" class="form-label">CEP</label>
-                        <input type="number" class="form-control" id="Cep" name="cep" required autocomplete="off" pattern="[0-9]{8}" />
+                        <input type="text" class="form-control" id="Cep" name="cep" required autocomplete="off" pattern="[0-9]{8}" />
                         <span></span>
                     </div>
 
@@ -202,14 +204,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </select>
                     </div>
                     <div class="col-md-12">
-                        <button type="submit" class="btn" style="background-color: #f34213; color: #ffffff;">
+                        <button id="btn-submit" class="btn" style="background-color: #f34213; color: #ffffff;">
                             Cadastrar
                         </button>
                     </div>
                 </form>
+
+                <div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div id="modal-text" class="modal-body"></div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn" data-bs-dismiss="modal" id="modal-close" style="background-color: #f34213; color: #ffffff;">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </main>
             <div class="mt-5"></div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-popRpmFF9JQgExhfw5tZT4I9/CI5e2QcuUZPOVXb1m7qUmeR2b50u+YFEYe1wgzy" crossorigin="anonymous"></script>
+        <script>
+            function sendForm(event) {
+                event.preventDefault();
+                let dadosForm = new FormData(event.target);
+                let modal = new bootstrap.Modal(document.getElementById("modal"));
+
+                let httpReq = new XMLHttpRequest();
+                httpReq.onreadystatechange = function () {
+                    if (httpReq.readyState === XMLHttpRequest.DONE) {
+                        if (httpReq.status === 200) document.getElementById("modal-text").innerText = "Paciente cadastrado com sucesso";
+                        else if (httpReq.status === 409) document.getElementById("modal-text").innerText = "Email já registrado";
+                        else document.getElementById("modal-text").innerText = "Erro inesperado";
+                        document.getElementById("modal-close").addEventListener("click", (event) => modal.hide());
+                        modal.show();
+                    }
+                };
+
+                httpReq.open("POST", "./");
+                httpReq.send(dadosForm);
+            }
+
+            window.onload = function () {
+                document.querySelector("form").addEventListener("submit", sendForm);
+            };
+        </script>
     </body>
 </html>
