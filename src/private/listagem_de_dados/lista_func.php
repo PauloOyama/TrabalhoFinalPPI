@@ -80,7 +80,7 @@ $stmt = $pdo->query($sql);
   <div class="container topics">
 
     <main id="homeMain">
-    <h3 class="centralizaX">Lista de Funcionários</h3>
+    <h3 class="centralizaX" id="simpleMargin">Lista de Funcionários</h3>
     <div class="table-responsive">
     <table class="table table-striped table-hover">
     <thead>
