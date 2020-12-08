@@ -10,3 +10,7 @@ div span {
 .isDoc {
   display: none;
 }
+
+#simpleMargin {
+    margin-bottom: 20px;
+}

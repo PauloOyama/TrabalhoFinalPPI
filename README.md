@@ -9,10 +9,10 @@
 
 - [x] ~~Listagem dos funcionários cadastrados~~
 - [x] ~~Listagem dos pacientes cadastrados~~
-- [ ] Listagem dos funcionários cadastrados (Funcional)
-- [ ] Listagem dos pacientes cadastrados (Funcional)
+- [x] ~~Listagem dos funcionários cadastrados (Funcional)~~
+- [x] ~~Listagem dos pacientes cadastrados (Funcional)~~
 - [ ] Listagem dos endereços auxiliares AJAX cadastrados
-- [ ] Listagem de todos os agendamentos de consultas realizados pelos clientes
+- [x] ~~Listagem de todos os agendamentos de consultas realizados pelos clientes~~
 - [ ] Listagem dos agendamentos de consultas apenas do funcionário logado caso ele seja um médico
 
 ## Public
@@ -22,5 +22,5 @@
 - [x] ~~Página Novo Endereço~~
 - [x] ~~Página de Login~~
 - [x] ~~Agendamento de Consulta~~
-- [ ] Página Novo Endereço (Funcional)
-- [ ] Agendamento de Consulta (Funcional)
+- [x] ~~Página Novo Endereço (Funcional)~~
+- [x] ~~Agendamento de Consulta (Funcional)~~
