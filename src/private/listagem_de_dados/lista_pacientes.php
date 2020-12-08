@@ -28,8 +28,7 @@ $stmt = $pdo->query($sql);
   <link rel="stylesheet" href="/utils.css">
   <link rel="stylesheet" href="/private/css's/index.css">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-CuOF+2SnTUfTwSZjCXf01h7uYhfOBuxIhGKPbfEJ3+FqH/s6cIFN9bGr1HmAg4fQ" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-CuOF+2SnTUfTwSZjCXf01h7uYhfOBuxIhGKPbfEJ3+FqH/s6cIFN9bGr1HmAg4fQ" crossorigin="anonymous">
 
 
 </head>
@@ -41,33 +40,29 @@ $stmt = $pdo->query($sql);
     <div class="container">
       <img src="/private/svg/cardiograma.svg" alt="Logo" class="logo" />
       <a class="navbar-brand" href="/private/">Clínica São Miguel</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Cadastro
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/private/cadastro_func/index.html">Funcionários</a>
+              <a class="dropdown-item" href="/private/cadastro-func/">Funcionários</a>
               <a class="dropdown-item " href="/private/">Pacientes</a>
             </div>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Lista de Dados
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown2">
               <a class="dropdown-item " href="/private/listagem_de_dados/lista_enderecos.html">Endereços</a>
               <a class="dropdown-item " href="/private/listagem_de_dados/lista_todos_agend.php">Agendamentos -
                 Clientes</a>
-              <a class="dropdown-item " href="/private/listagem_de_dados/lista_agend_med.html"
-                style="color:blue;">Agendamentos - Funcionário</a>
+              <a class="dropdown-item " href="/private/listagem_de_dados/lista_agend_med.html" style="color:blue;">Agendamentos - Funcionário</a>
               <a class="dropdown-item" href="/private/listagem_de_dados/lista_func.php">Funcionários</a>
               <a class="dropdown-item " href="/private/listagem_de_dados/lista_pacientes.php">Pacientes</a>
             </div>
@@ -80,46 +75,46 @@ $stmt = $pdo->query($sql);
   <div class="container topics">
 
     <main id="homeMain">
-    <h3 class="centralizaX" id="simpleMargin" >Lista de Pacientes</h3>
-    <div class="table-responsive">
-    <table class="table table-striped table-hover">
-      <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Nome</th>
-        <th scope="col">Email</th>
-        <th scope="col">Telefone</th>
-        <th scope="col">Logradouro</th>
-        <th scope="col">Cidade</th>
-        <th scope="col">Estado</th>
-        <th scope="col">Peso</th>
-        <th scope="col">Altura</th>
-        <th scope="col">Tipo Sanguíneo</th>
-      </tr>
-      </thead>
+      <h3 class="centralizaX" id="simpleMargin">Lista de Pacientes</h3>
+      <div class="table-responsive">
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Email</th>
+              <th scope="col">Telefone</th>
+              <th scope="col">Logradouro</th>
+              <th scope="col">Cidade</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Peso</th>
+              <th scope="col">Altura</th>
+              <th scope="col">Tipo Sanguíneo</th>
+            </tr>
+          </thead>
 
-      <tbody>
-      
-      <?php
+          <tbody>
 
-      $i = 0;
+            <?php
 
-      while ($row = $stmt->fetch()) {
+            $i = 0;
 
-        global $i;
-        $i++;
+            while ($row = $stmt->fetch()) {
 
-        $nome = htmlspecialchars($row['nome']);
-        $email = htmlspecialchars($row['email']);
-        $telefone = htmlspecialchars($row['telefone']);
-        $logradouro = htmlspecialchars($row['logradouro']);
-        $cidade = htmlspecialchars($row['cidade']);
-        $estado = htmlspecialchars($row['estado']);
-        $peso = htmlspecialchars($row['peso']);
-        $altura = htmlspecialchars($row['altura']);
-        $tipo_sanguineo = htmlspecialchars($row['tipo_sanguineo']);
+              global $i;
+              $i++;
 
-        echo <<<HTML
+              $nome = htmlspecialchars($row['nome']);
+              $email = htmlspecialchars($row['email']);
+              $telefone = htmlspecialchars($row['telefone']);
+              $logradouro = htmlspecialchars($row['logradouro']);
+              $cidade = htmlspecialchars($row['cidade']);
+              $estado = htmlspecialchars($row['estado']);
+              $peso = htmlspecialchars($row['peso']);
+              $altura = htmlspecialchars($row['altura']);
+              $tipo_sanguineo = htmlspecialchars($row['tipo_sanguineo']);
+
+              echo <<<HTML
           <tr>
           <th scope="row">$i</th>
             <td >$nome</td> 
@@ -134,20 +129,19 @@ $stmt = $pdo->query($sql);
           </tr> 
             
         HTML;
-      }
-      
-      ?>
+            }
 
-      </tbody>   
-    </table>
-    </div>
+            ?>
+
+          </tbody>
+        </table>
+      </div>
 
     </main>
     <div class="mt-5"></div>
 
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-popRpmFF9JQgExhfw5tZT4I9/CI5e2QcuUZPOVXb1m7qUmeR2b50u+YFEYe1wgzy"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-popRpmFF9JQgExhfw5tZT4I9/CI5e2QcuUZPOVXb1m7qUmeR2b50u+YFEYe1wgzy" crossorigin="anonymous"></script>
 </body>
+
 </html>

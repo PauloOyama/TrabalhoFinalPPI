@@ -50,7 +50,7 @@ $stmt = $pdo->query($sql);
               Cadastro
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/private/cadastro_func/index.html">Funcionários</a>
+              <a class="dropdown-item" href="/private/cadastro-func/">Funcionários</a>
               <a class="dropdown-item " href="/private/">Pacientes</a>
             </div>
           </li>
