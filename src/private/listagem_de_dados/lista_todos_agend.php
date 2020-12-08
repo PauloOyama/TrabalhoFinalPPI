@@ -4,8 +4,8 @@ include_once "../../db.php";
 include_once "../../common.php";
 
 $sql = <<<SQL
-SELECT *
-FROM agenda
+SELECT data_agendamento, horario, agenda.nome, agenda.email, agenda.telefone, pessoa.nome as nome_medico
+FROM agenda INNER JOIN pessoa ON agenda.codigo_medico = pessoa.codigo
 SQL;
 
 
@@ -53,7 +53,7 @@ $stmt = $pdo->query($sql);
               Cadastro
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/private/cadastro_func/index.html">Funcionários</a>
+              <a class="dropdown-item" href="/private/cadastro_func/index.php">Funcionários</a>
               <a class="dropdown-item " href="/private/">Pacientes</a>
             </div>
           </li>
@@ -63,13 +63,13 @@ $stmt = $pdo->query($sql);
               Lista de Dados
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown2">
-              <a class="dropdown-item " href="/private/listagem_de_dados/lista_enderecos.html">Endereços</a>
-              <a class="dropdown-item " href="/private/listagem_de_dados/lista_todos_agend.php">Agendamentos -
+              <a class="dropdown-item " href="/private/listagem_de_dados/lista_todos_agend.php" style="color:blue;">Agendamentos -
                 Clientes</a>
               <a class="dropdown-item " href="/private/listagem_de_dados/lista_agend_med.html"
-                style="color:blue;">Agendamentos - Funcionário</a>
+              >Agendamentos - Funcionário</a>
               <a class="dropdown-item" href="/private/listagem_de_dados/lista_func.php">Funcionários</a>
               <a class="dropdown-item " href="/private/listagem_de_dados/lista_pacientes.php">Pacientes</a>
+              <a class="dropdown-item " href="/private/listagem_de_dados/lista_enderecos.php">Endereços</a>
             </div>
           </li>
         </ul>
@@ -86,11 +86,12 @@ $stmt = $pdo->query($sql);
     <thead>
       <tr>
         <th>#</th>
+        <th>Data</th>
         <th>Horário</th>
-        <th>Nome</th>
+        <th>Paciente</th>
         <th>Email</th>
         <th>Telefone</th>
-        <th>Data</th>
+        <th>Médico</th>
       </tr>
       </thead>
 
@@ -106,6 +107,7 @@ $stmt = $pdo->query($sql);
 
         $horario = htmlspecialchars($row['horario']);
         $nome = htmlspecialchars($row['nome']);
+        $nome_medico = htmlspecialchars($row['nome_medico']);
         $email = htmlspecialchars($row['email']);
         $telefone = htmlspecialchars($row['telefone']);
 
@@ -115,11 +117,12 @@ $stmt = $pdo->query($sql);
         echo <<<HTML
           <tr>
             <td>$i</td> 
+            <td>$dataFormatoDiaMesAno</td>
             <td>$horario</td> 
             <td>$nome</td> 
             <td>$email</td>
             <td>$telefone</td>
-            <td>$dataFormatoDiaMesAno</td>
+            <td>$nome_medico</td>
          
           </tr>      
         HTML;

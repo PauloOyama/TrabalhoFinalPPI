@@ -4,9 +4,8 @@ include_once "../../db.php";
 include_once "../../common.php";
 
 $sql = <<<SQL
-SELECT nome, email, telefone, cep, logradouro, bairro, cidade, estado,
-  data_contrato, salario, senha_hash
-FROM pessoa INNER JOIN funcionario ON pessoa.codigo = funcionario.codigo
+SELECT *
+FROM base_enderecos_ajax
 SQL;
 
 
@@ -23,7 +22,7 @@ $stmt = $pdo->query($sql);
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Tabela Funcionários</title>
+  <title>Lista de Endereços</title>
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="/utils.css">
@@ -67,10 +66,10 @@ $stmt = $pdo->query($sql);
               <a class="dropdown-item " href="/private/listagem_de_dados/lista_todos_agend.php">Agendamentos -
                 Clientes</a>
               <a class="dropdown-item " href="/private/listagem_de_dados/lista_agend_med.html"
-               >Agendamentos - Funcionário</a>
-              <a class="dropdown-item" href="/private/listagem_de_dados/lista_func.php" style="color:blue;">Funcionários</a>
+                >Agendamentos - Funcionário</a>
+              <a class="dropdown-item" href="/private/listagem_de_dados/lista_func.php">Funcionários</a>
               <a class="dropdown-item " href="/private/listagem_de_dados/lista_pacientes.php">Pacientes</a>
-              <a class="dropdown-item " href="/private/listagem_de_dados/lista_enderecos.php">Endereços</a>
+              <a class="dropdown-item " href="/private/listagem_de_dados/lista_enderecos.php" style="color:blue;">Endereços</a>
             </div>
           </li>
         </ul>
@@ -81,62 +80,46 @@ $stmt = $pdo->query($sql);
   <div class="container topics">
 
     <main id="homeMain">
-    <h3 class="centralizaX" id="simpleMargin">Lista de Funcionários</h3>
+    <h3 class="centralizaX" id="simpleMargin">Lista de Endereços</h3>
     <div class="table-responsive">
     <table class="table table-striped table-hover">
     <thead>
       <tr>
         <th>#</th>
-        <th>Nome</th>
-        <th>Email</th>
-        <th>Telefone</th>
         <th>CEP</th>
         <th>Logradouro</th>
         <th>Bairro</th>
         <th>Cidade</th>
         <th>Estado</th>
-        <th>Data</th>
-        <th>Salário</th>
-        <th>Senha</th>
       </tr>
       </thead>
+
       <tbody>
-
-
       <?php
+
       $i = 0;
-while ($row = $stmt->fetch()) {
+
+      while ($row = $stmt->fetch()) {
+
         global $i;
         $i++;
 
-        $nome = htmlspecialchars($row['nome']);
-        $email = htmlspecialchars($row['email']);
-        $telefone = htmlspecialchars($row['telefone']);
         $cep = htmlspecialchars($row['cep']);
         $logradouro = htmlspecialchars($row['logradouro']);
         $bairro = htmlspecialchars($row['bairro']);
         $cidade = htmlspecialchars($row['cidade']);
         $estado = htmlspecialchars($row['estado']);
-        $salario = htmlspecialchars($row['salario']);
-        $senha_hash = htmlspecialchars($row['senha_hash']);
 
-        $data = new DateTime($row['data_contrato']);
-        $dataFormatoDiaMesAno = $data->format('d-m-Y');
 
         echo <<<HTML
           <tr>
-          <th scope="row">$i</th>
-            <td>$nome</td> 
-            <td>$email</td>
-            <td>$telefone</td>
-            <td>$cep</td>
-            <td>$logradouro</td>
+            <td>$i</td> 
+            <td>$cep</td> 
+            <td>$logradouro</td> 
             <td>$bairro</td>
             <td>$cidade</td>
             <td>$estado</td>
-            <td>$dataFormatoDiaMesAno</td>
-            <td>$salario</td>
-            <td>$senha_hash</td>
+         
           </tr>      
         HTML;
       }
@@ -144,7 +127,6 @@ while ($row = $stmt->fetch()) {
       </tbody>
     </table>
     </div>
-
     </main>
     <div class="mt-5"></div>
 

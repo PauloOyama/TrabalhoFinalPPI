@@ -4,8 +4,9 @@ include_once "../../db.php";
 include_once "../../common.php";
 
 $sql = <<<SQL
-SELECT *
-FROM pessoa NATURAL JOIN paciente
+SELECT nome, email, telefone, cep, logradouro, bairro, cidade, estado,
+  peso, altura, tipo_sanguineo
+FROM pessoa INNER JOIN paciente ON pessoa.codigo = paciente.codigo
 SQL;
 
 
@@ -53,7 +54,7 @@ $stmt = $pdo->query($sql);
               Cadastro
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/private/cadastro_func/index.html">Funcionários</a>
+              <a class="dropdown-item" href="/private/cadastro_func/index.php">Funcionários</a>
               <a class="dropdown-item " href="/private/">Pacientes</a>
             </div>
           </li>
@@ -63,13 +64,13 @@ $stmt = $pdo->query($sql);
               Lista de Dados
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown2">
-              <a class="dropdown-item " href="/private/listagem_de_dados/lista_enderecos.html">Endereços</a>
               <a class="dropdown-item " href="/private/listagem_de_dados/lista_todos_agend.php">Agendamentos -
                 Clientes</a>
               <a class="dropdown-item " href="/private/listagem_de_dados/lista_agend_med.html"
-                style="color:blue;">Agendamentos - Funcionário</a>
+               >Agendamentos - Funcionário</a>
               <a class="dropdown-item" href="/private/listagem_de_dados/lista_func.php">Funcionários</a>
-              <a class="dropdown-item " href="/private/listagem_de_dados/lista_pacientes.php">Pacientes</a>
+              <a class="dropdown-item " href="/private/listagem_de_dados/lista_pacientes.php" style="color:blue;">Pacientes</a>
+              <a class="dropdown-item " href="/private/listagem_de_dados/lista_enderecos.php">Endereços</a>
             </div>
           </li>
         </ul>
@@ -89,7 +90,9 @@ $stmt = $pdo->query($sql);
         <th scope="col">Nome</th>
         <th scope="col">Email</th>
         <th scope="col">Telefone</th>
+        <th scope="col">CEP</th>
         <th scope="col">Logradouro</th>
+        <th scope="col">Bairro</th>
         <th scope="col">Cidade</th>
         <th scope="col">Estado</th>
         <th scope="col">Peso</th>
@@ -112,7 +115,9 @@ $stmt = $pdo->query($sql);
         $nome = htmlspecialchars($row['nome']);
         $email = htmlspecialchars($row['email']);
         $telefone = htmlspecialchars($row['telefone']);
+        $cep = htmlspecialchars($row['cep']);
         $logradouro = htmlspecialchars($row['logradouro']);
+        $bairro = htmlspecialchars($row['bairro']);
         $cidade = htmlspecialchars($row['cidade']);
         $estado = htmlspecialchars($row['estado']);
         $peso = htmlspecialchars($row['peso']);
@@ -125,7 +130,9 @@ $stmt = $pdo->query($sql);
             <td >$nome</td> 
             <td >$email</td>
             <td >$telefone</td>
+            <td >$cep</td>
             <td >$logradouro</td>
+            <td >$bairro</td>
             <td >$cidade</td>
             <td >$estado</td>
             <td >$peso</td>
