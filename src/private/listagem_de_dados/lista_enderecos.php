@@ -53,7 +53,7 @@ $stmt = $pdo->query($sql);
               Cadastro
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/private/cadastro_func/index.php">Funcionários</a>
+              <a class="dropdown-item" href="/private/cadastro-func/index.php">Funcionários</a>
               <a class="dropdown-item " href="/private/">Pacientes</a>
             </div>
           </li>
@@ -70,7 +70,7 @@ $stmt = $pdo->query($sql);
               <a class="dropdown-item" href="/private/listagem_de_dados/lista_func.php">Funcionários</a>
               <a class="dropdown-item " href="/private/listagem_de_dados/lista_pacientes.php">Pacientes</a>
               <a class="dropdown-item " href="/private/listagem_de_dados/lista_enderecos.php" style="color:blue;">Endereços</a>
-              <a class="dropdown-item " href="/public/index.html">Sair</a>
+              <a class="dropdown-item " href="/public/index.php">Sair</a>
             </div>
           </li>
         </ul>

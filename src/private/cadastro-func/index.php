@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown2">
                             <a class="dropdown-item " href="/private/listagem_de_dados/lista_enderecos.html">Endereços</a>
-                            <a class="dropdown-item " href="/private/listagem_de_dados/lista_todos_agend.html">Agendamentos -
+                            <a class="dropdown-item " href="/private/listagem_de_dados/lista_todos_agend.php">Agendamentos -
                                 Clientes</a>
                             <a class="dropdown-item " href="/private/listagem_de_dados/lista_agend_med.php" style="color:blue;">Agendamentos - Funcionário</a>
                             <a class="dropdown-item" href="/private/listagem_de_dados/lista_func.html">Funcionários</a>
