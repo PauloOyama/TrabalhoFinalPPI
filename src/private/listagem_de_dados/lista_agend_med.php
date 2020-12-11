@@ -3,13 +3,13 @@
 include_once "../../db.php";
 include_once "../../common.php";
 
-if(!isset($_COOKIE["session"])) {
-    header("location: lista_agend_is_not_med.html");
-    exit();
-}
+// if(!isset($_COOKIE["session"])) {
+//     header("Location: lista_agend_is_not_med.html");
+//     exit();
+// }
 
-// $cod = $_COOKIE["session"]; ao implementar o cookie
-$cod = 1; //isabela@email.com
+// $cod = htmlspecialchars($_COOKIE["session"]); ao implementar o cookie
+$cod = 1; //isabel@email.com
     
 $sql = <<<SQL
     SELECT data_agendamento, horario, agenda.nome, agenda.email, agenda.telefone, pessoa.nome as nome_medico
