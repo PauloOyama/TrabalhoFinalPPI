@@ -98,6 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <a class="dropdown-item" href="/private/listagem_de_dados/lista_func.php">Funcionários</a>
                                 <a class="dropdown-item" href="/private/listagem_de_dados/lista_pacientes.php">Pacientes</a>
                                 <a class="dropdown-item" href="/private/listagem_de_dados/lista_enderecos.php">Endereços</a>
+                                <a class="dropdown-item " href="/public/index.html">Sair</a>
                             </div>
                         </li>
                     </ul>

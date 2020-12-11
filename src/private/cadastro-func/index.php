@@ -104,6 +104,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <a class="dropdown-item " href="/private/listagem_de_dados/lista_agend_med.php" style="color:blue;">Agendamentos - Funcionário</a>
                             <a class="dropdown-item" href="/private/listagem_de_dados/lista_func.html">Funcionários</a>
                             <a class="dropdown-item " href="/private/listagem_de_dados/lista_pacientes.html">Pacientes</a>
+                            <a class="dropdown-item " href="/public/index.html">Sair</a>
                         </div>
                     </li>
                 </ul>
