@@ -62,7 +62,7 @@ $stmt = $pdo->query($sql);
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown2">
               <a class="dropdown-item " href="/private/listagem_de_dados/lista_todos_agend.php">Agendamentos -
                 Clientes</a>
-              <a class="dropdown-item " href="/private/listagem_de_dados/lista_agend_med.html"
+              <a class="dropdown-item " href="/private/listagem_de_dados/lista_agend_med.php"
                >Agendamentos - Funcionário</a>
               <a class="dropdown-item" href="/private/listagem_de_dados/lista_func.php" style="color:blue;">Funcionários</a>
               <a class="dropdown-item " href="/private/listagem_de_dados/lista_pacientes.php">Pacientes</a>

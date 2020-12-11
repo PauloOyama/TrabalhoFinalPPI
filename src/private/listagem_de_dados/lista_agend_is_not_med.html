@@ -1,18 +1,3 @@
-<?php
-
-include_once "../../db.php";
-include_once "../../common.php";
-
-$sql = <<<SQL
-SELECT *
-FROM base_enderecos_ajax
-SQL;
-
-
-$stmt = $pdo->query($sql);
-
-?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -22,7 +7,7 @@ $stmt = $pdo->query($sql);
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Lista de Endereços</title>
+  <title>Clínica São Miguel - Private</title>
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="/utils.css">
@@ -53,7 +38,7 @@ $stmt = $pdo->query($sql);
               Cadastro
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/private/cadastro_func/index.php">Funcionários</a>
+              <a class="dropdown-item" href="/private/cadastro-func/">Funcionários</a>
               <a class="dropdown-item " href="/private/">Pacientes</a>
             </div>
           </li>
@@ -66,10 +51,10 @@ $stmt = $pdo->query($sql);
               <a class="dropdown-item " href="/private/listagem_de_dados/lista_todos_agend.php">Agendamentos -
                 Clientes</a>
               <a class="dropdown-item " href="/private/listagem_de_dados/lista_agend_med.php"
-                >Agendamentos - Funcionário</a>
+                style="color:blue;">Agendamentos - Funcionário</a>
               <a class="dropdown-item" href="/private/listagem_de_dados/lista_func.php">Funcionários</a>
               <a class="dropdown-item " href="/private/listagem_de_dados/lista_pacientes.php">Pacientes</a>
-              <a class="dropdown-item " href="/private/listagem_de_dados/lista_enderecos.php" style="color:blue;">Endereços</a>
+              <a class="dropdown-item " href="/private/listagem_de_dados/lista_enderecos.php">Endereços</a>
             </div>
           </li>
         </ul>
@@ -77,56 +62,11 @@ $stmt = $pdo->query($sql);
     </div>
   </nav>
   <!-- Page Content -->
-  <div class="container topics">
+  <div class="container topics centralizaXY" >
 
-    <main id="homeMain">
-    <h3 class="centralizaX" id="simpleMargin">Lista de Endereços</h3>
-    <div class="table-responsive">
-    <table class="table table-striped table-hover">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>CEP</th>
-        <th>Logradouro</th>
-        <th>Bairro</th>
-        <th>Cidade</th>
-        <th>Estado</th>
-      </tr>
-      </thead>
-
-      <tbody>
-      <?php
-
-      $i = 0;
-
-      while ($row = $stmt->fetch()) {
-
-        global $i;
-        $i++;
-
-        $cep = htmlspecialchars($row['cep']);
-        $logradouro = htmlspecialchars($row['logradouro']);
-        $bairro = htmlspecialchars($row['bairro']);
-        $cidade = htmlspecialchars($row['cidade']);
-        $estado = htmlspecialchars($row['estado']);
-
-
-        echo <<<HTML
-          <tr>
-            <td>$i</td> 
-            <td>$cep</td> 
-            <td>$logradouro</td> 
-            <td>$bairro</td>
-            <td>$cidade</td>
-            <td>$estado</td>
-         
-          </tr>      
-        HTML;
-      }
-      ?>
-      </tbody>
-    </table>
-    </div>
+    <main id="homeMain" style="text-align:center">
+      <h2>ACESSO NEGADO</h2>
+      <p>Foi verificado que você <strong>não</strong> é um médico ou <strong>não</strong> tem autorização para ter acesso a lista de agendamentos de consultas</p>
     </main>
     <div class="mt-5"></div>
 
@@ -135,4 +75,8 @@ $stmt = $pdo->query($sql);
     integrity="sha384-popRpmFF9JQgExhfw5tZT4I9/CI5e2QcuUZPOVXb1m7qUmeR2b50u+YFEYe1wgzy"
     crossorigin="anonymous"></script>
 </body>
+
+
+
+
 </html>

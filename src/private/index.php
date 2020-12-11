@@ -94,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown2">
                                 <a class="dropdown-item" href="/private/listagem_de_dados/lista_todos_agend.php">Agendamentos - Clientes</a>
-                                <a class="dropdown-item" href="/private/listagem_de_dados/lista_agend_med.html">Agendamentos - Funcionário</a>
+                                <a class="dropdown-item" href="/private/listagem_de_dados/lista_agend_med.php">Agendamentos - Funcionário</a>
                                 <a class="dropdown-item" href="/private/listagem_de_dados/lista_func.php">Funcionários</a>
                                 <a class="dropdown-item" href="/private/listagem_de_dados/lista_pacientes.php">Pacientes</a>
                                 <a class="dropdown-item" href="/private/listagem_de_dados/lista_enderecos.php">Endereços</a>

@@ -101,7 +101,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <a class="dropdown-item " href="/private/listagem_de_dados/lista_enderecos.html">Endereços</a>
                             <a class="dropdown-item " href="/private/listagem_de_dados/lista_todos_agend.html">Agendamentos -
                                 Clientes</a>
-                            <a class="dropdown-item " href="/private/listagem_de_dados/lista_agend_med.html" style="color:blue;">Agendamentos - Funcionário</a>
+                            <a class="dropdown-item " href="/private/listagem_de_dados/lista_agend_med.php" style="color:blue;">Agendamentos - Funcionário</a>
                             <a class="dropdown-item" href="/private/listagem_de_dados/lista_func.html">Funcionários</a>
                             <a class="dropdown-item " href="/private/listagem_de_dados/lista_pacientes.html">Pacientes</a>
                         </div>

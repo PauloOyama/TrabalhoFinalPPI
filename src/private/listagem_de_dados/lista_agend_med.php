@@ -3,13 +3,22 @@
 include_once "../../db.php";
 include_once "../../common.php";
 
+if(!isset($_COOKIE["session"])) {
+    header("location: lista_agend_is_not_med.html");
+    exit();
+}
+
+// $cod = $_COOKIE["session"]; ao implementar o cookie
+$cod = 1; //isabela@email.com
+    
 $sql = <<<SQL
-SELECT *
-FROM base_enderecos_ajax
+    SELECT data_agendamento, horario, agenda.nome, agenda.email, agenda.telefone, pessoa.nome as nome_medico
+    FROM agenda INNER JOIN pessoa ON agenda.codigo_medico = pessoa.codigo
+    WHERE pessoa.codigo = ?
 SQL;
 
-
-$stmt = $pdo->query($sql);
+$stmt = $pdo->prepare($sql);
+$stmt->execute([$cod]);
 
 ?>
 
@@ -22,7 +31,7 @@ $stmt = $pdo->query($sql);
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>Lista de Endereços</title>
+  <title>Clínica São Miguel - Private</title>
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="/utils.css">
@@ -53,7 +62,7 @@ $stmt = $pdo->query($sql);
               Cadastro
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/private/cadastro_func/index.php">Funcionários</a>
+              <a class="dropdown-item" href="/private/cadastro-func/">Funcionários</a>
               <a class="dropdown-item " href="/private/">Pacientes</a>
             </div>
           </li>
@@ -66,73 +75,79 @@ $stmt = $pdo->query($sql);
               <a class="dropdown-item " href="/private/listagem_de_dados/lista_todos_agend.php">Agendamentos -
                 Clientes</a>
               <a class="dropdown-item " href="/private/listagem_de_dados/lista_agend_med.php"
-                >Agendamentos - Funcionário</a>
+                style="color:blue;">Agendamentos - Funcionário</a>
               <a class="dropdown-item" href="/private/listagem_de_dados/lista_func.php">Funcionários</a>
               <a class="dropdown-item " href="/private/listagem_de_dados/lista_pacientes.php">Pacientes</a>
-              <a class="dropdown-item " href="/private/listagem_de_dados/lista_enderecos.php" style="color:blue;">Endereços</a>
+              <a class="dropdown-item " href="/private/listagem_de_dados/lista_enderecos.php">Endereços</a>
             </div>
           </li>
         </ul>
       </div>
     </div>
   </nav>
-  <!-- Page Content -->
+
+     <!-- Page Content -->
   <div class="container topics">
 
-    <main id="homeMain">
-    <h3 class="centralizaX" id="simpleMargin">Lista de Endereços</h3>
-    <div class="table-responsive">
-    <table class="table table-striped table-hover">
-    <thead>
+<main id="homeMain">
+<h3 class="centralizaX" id="simpleMargin">Suas Consultas</h3>
+<div class="table-responsive">
+<table class="table table-striped table-hover">
+<thead>
+  <tr>
+    <th>#</th>
+    <th>Data</th>
+    <th>Horário</th>
+    <th>Paciente</th>
+    <th>Email</th>
+    <th>Telefone</th>
+    <th>Médico</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <?php
+
+  $i = 0;
+
+  while ($row = $stmt->fetch()) {
+
+    global $i;
+    $i++;
+
+    $horario = htmlspecialchars($row['horario']);
+    $nome = htmlspecialchars($row['nome']);
+    $nome_medico = htmlspecialchars($row['nome_medico']);
+    $email = htmlspecialchars($row['email']);
+    $telefone = htmlspecialchars($row['telefone']);
+
+    $data = new DateTime($row['data_agendamento']);
+    $dataFormatoDiaMesAno = $data->format('d-m-Y');
+
+    echo <<<HTML
       <tr>
-        <th>#</th>
-        <th>CEP</th>
-        <th>Logradouro</th>
-        <th>Bairro</th>
-        <th>Cidade</th>
-        <th>Estado</th>
-      </tr>
-      </thead>
-
-      <tbody>
-      <?php
-
-      $i = 0;
-
-      while ($row = $stmt->fetch()) {
-
-        global $i;
-        $i++;
-
-        $cep = htmlspecialchars($row['cep']);
-        $logradouro = htmlspecialchars($row['logradouro']);
-        $bairro = htmlspecialchars($row['bairro']);
-        $cidade = htmlspecialchars($row['cidade']);
-        $estado = htmlspecialchars($row['estado']);
-
-
-        echo <<<HTML
-          <tr>
-            <td>$i</td> 
-            <td>$cep</td> 
-            <td>$logradouro</td> 
-            <td>$bairro</td>
-            <td>$cidade</td>
-            <td>$estado</td>
-         
-          </tr>      
-        HTML;
-      }
-      ?>
+        <td>$i</td> 
+        <td>$dataFormatoDiaMesAno</td>
+        <td>$horario</td> 
+        <td>$nome</td> 
+        <td>$email</td>
+        <td>$telefone</td>
+        <td>$nome_medico</td>
+     
+      </tr>      
+    HTML;
+        }
+        ?>
       </tbody>
     </table>
-    </div>
-    </main>
-    <div class="mt-5"></div>
-
   </div>
+</main>
+<div class="mt-5"></div>
+
+</div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-popRpmFF9JQgExhfw5tZT4I9/CI5e2QcuUZPOVXb1m7qUmeR2b50u+YFEYe1wgzy"
     crossorigin="anonymous"></script>
 </body>
+
 </html>
