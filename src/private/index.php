@@ -1,20 +1,18 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST")
-  header('Content-Type: application/json');
 
 include_once "../db.php";
 include_once "../common.php";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $expected_keys = [
-    "nome", "email", "telefone", "cep", "logradouro",
-    "bairro", "cidade", "estado", "peso", "altura", "tipo"
-  ];
-  validate_keys($expected_keys, $_POST);
+if ($_SERVER["REQUEST_METHOD"] == "POST")
+{
+    header('Content-Type: application/json');
+    $expected_keys = ["nome", "email", "telefone", "cep", "logradouro", "bairro", "cidade", "estado", "peso", "altura", "tipo"];
+    validate_keys($expected_keys, $_POST);
 
-  extract($_POST);
-  try {
-    $sql_pessoa = <<<SQL
+    extract($_POST);
+    try
+    {
+        $sql_pessoa = <<<SQL
         INSERT INTO pessoa VALUES
         (default, ?, ?, ?, ?, ?, ?, ?, ?);
         SQL;
