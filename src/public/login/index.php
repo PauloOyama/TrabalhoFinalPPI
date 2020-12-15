@@ -19,10 +19,13 @@ function authenticate($pdo, $email, $senha)
 
     // Executa a verificação se o funcionário médico, para configurar um cookie de sessão como médico
     // (métodos mais seguros incluem usar uma tabela com sessões porém isso é apenas uma demonstração)
-    $sql = "SELECT * FROM medico WHERE codigo = {$row["codigo"]}";
+    $code = $row["codigo"];
+    $sql = "SELECT * FROM medico WHERE codigo = $code";
     $row = $pdo->query($sql);
     if ($row->fetch())
-        setcookie("session", "medico");
+        setcookie("user", $code, 0, "/");
+    else
+        setcookie("user", "regular", 0, "/");
 
     echo json_encode(["LOGIN" => true]);
     exit();

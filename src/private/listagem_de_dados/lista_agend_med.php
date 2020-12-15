@@ -3,20 +3,22 @@
 include_once "../../db.php";
 include_once "../../common.php";
 
-// if(!isset($_COOKIE["session"])) {
-//     header("Location: lista_agend_is_not_med.html");
-//     exit();
-// }
 
-// $cod = htmlspecialchars($_COOKIE["session"]); ao implementar o cookie
-$cod = 1; //isabel@email.com
-    
+// Os cookies de médicos são numéricos e possuem seu código de pessoa
+if (!array_key_exists("user", $_COOKIE) || !is_numeric($_COOKIE["user"])) {
+  header("Location: lista_agend_is_not_med.html");
+  exit();
+}
+
+$cod = $_COOKIE["user"];
+
 $sql = <<<SQL
     SELECT data_agendamento, horario, agenda.nome, agenda.email, agenda.telefone, pessoa.nome as nome_medico
     FROM agenda INNER JOIN pessoa ON agenda.codigo_medico = pessoa.codigo
     WHERE pessoa.codigo = ?
 SQL;
 
+// Uso de prepared statements pois o usuário pode alterar cookies localmente
 $stmt = $pdo->prepare($sql);
 $stmt->execute([$cod]);
 
@@ -127,15 +129,15 @@ $stmt->execute([$cod]);
 
     echo <<<HTML
       <tr>
-        <td>$i</td> 
+        <td>$i</td>
         <td>$dataFormatoDiaMesAno</td>
-        <td>$horario</td> 
-        <td>$nome</td> 
+        <td>$horario</td>
+        <td>$nome</td>
         <td>$email</td>
         <td>$telefone</td>
         <td>$nome_medico</td>
-     
-      </tr>      
+
+      </tr>
     HTML;
         }
         ?>
