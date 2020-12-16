@@ -131,6 +131,9 @@ $stmt->execute([$cod]);
         <div class="mt-5"></div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-popRpmFF9JQgExhfw5tZT4I9/CI5e2QcuUZPOVXb1m7qUmeR2b50u+YFEYe1wgzy" crossorigin="anonymous"></script>
+    <footer>
+        <p>® Copyright 2020. Todos os direitos reservados.</p>
+    </footer>
 </body>
 
 </html>

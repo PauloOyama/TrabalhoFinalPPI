@@ -155,6 +155,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         document.querySelector("form").addEventListener("submit", sendPageForm);
     </script>
+    <footer>
+        <p>® Copyright 2020. Todos os direitos reservados.</p>
+    </footer>
 </body>
 
 </html>

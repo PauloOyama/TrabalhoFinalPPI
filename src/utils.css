@@ -70,3 +70,11 @@ h2 {
 .dropdown-item:hover {
   color: #f67451 !important;
 }
+
+footer > p {
+  bottom: 0;
+  color: black;
+  align-items: center;
+  text-align: center;
+  font-size: 1rem;
+}
