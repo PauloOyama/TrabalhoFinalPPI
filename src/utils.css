@@ -71,8 +71,15 @@ h2 {
   color: #f67451 !important;
 }
 
-footer > p {
+footer {
+  left: 0;
   bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+}
+
+footer > p {
   color: black;
   align-items: center;
   text-align: center;
